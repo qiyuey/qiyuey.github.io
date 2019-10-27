@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>商品架构</title>
+    <url>/2019/07/24/%E5%95%86%E5%93%81%E6%9E%B6%E6%9E%84/</url>
+    <content><![CDATA[<h1 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h1><p>商品系统的总体架构</p>
+<a id="more"></a>
+<img class data-src="/2019/07/24/%E5%95%86%E5%93%81%E6%9E%B6%E6%9E%84/%E7%B1%BB%E7%9B%AE%E5%95%86%E5%93%81.svg">]]></content>
+      <categories>
+        <category>商品交易</category>
+      </categories>
+      <tags>
+        <tag>商品</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>库存状态机</title>
+    <url>/2019/02/19/%E5%BA%93%E5%AD%98%E7%8A%B6%E6%80%81%E6%9C%BA/</url>
+    <content><![CDATA[<h1 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h1><p>库存中心的流水和库存的状态机，包含：拍减、付减、预扣三种模式</p>
+<a id="more"></a>
+<img class data-src="/2019/02/19/%E5%BA%93%E5%AD%98%E7%8A%B6%E6%80%81%E6%9C%BA/%E5%BA%93%E5%AD%98.svg">
+]]></content>
+      <categories>
+        <category>商品交易</category>
+      </categories>
+      <tags>
+        <tag>库存</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IDEA 之 JVM Profiler 浅析</title>
+    <url>/2019/02/19/IDEA-%E4%B9%8B-JVM-Profiler-%E6%B5%85%E6%9E%90/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>21世纪10年代后，IDEA 凭借自身的各种优势逐渐取代传统 IDE，成为 Java 和 Kotlin 的首选开发环境，并且仍然在不断提升自身的魅力。</p>
+<p>在 IntelliJ IDEA v2018.3 旗舰版之后，提供了新的实验性功能 <code>JVM Profiler</code>，目前适用于 macOS 和 Linux，而 Windows 的支持也在进行中。</p>
+<p>下面，为大家介绍 JVM Profiler 的主要使用方式，以及 JVM Profiler 相比其他 Profiler 的优势在哪里。</p>
+<a id="more"></a>
+
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><h2 id="开启"><a href="#开启" class="headerlink" title="开启"></a>开启</h2><p>实验性功能的开启在 <em>维护</em> 里，首先打开维护对话框（快捷键，Linux 上的 Ctrl - Alt - Shift - /，macOS 上的 Cmd - Alt - Shift - /），选择 <em>Experimental features</em> 选项，然后勾选 <em>idea.profiler.enabled</em> 选项。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>开启之后，工具栏 <em>Run</em> 右侧会出现 <em>Run with Async Profiler</em> ，使用该按钮启动即可：</p>
+<img class data-src="/2019/02/19/IDEA-%E4%B9%8B-JVM-Profiler-%E6%B5%85%E6%9E%90/%E6%8C%89%E9%92%AE%E6%89%A7%E8%A1%8C.png">
+
+<p>同样也支持单元测试：</p>
+<img class data-src="/2019/02/19/IDEA-%E4%B9%8B-JVM-Profiler-%E6%B5%85%E6%9E%90/%E5%8D%95%E6%B5%8B%E6%89%A7%E8%A1%8C.png">
+
+<h2 id="JVM-Profiler-主要功能"><a href="#JVM-Profiler-主要功能" class="headerlink" title="JVM Profiler 主要功能"></a>JVM Profiler 主要功能</h2><p>JVM Profiler 主要提供了 CPU Profiler 功能，Memory Profiler 在 2019.1 EAP 版中已经出现，这里主要介绍一下 CPU Profiler 功能。</p>
+<p>执行之后，工具窗口会新增 CPU Profiler，主要提供了：CPU 火焰图 <a href="http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html" target="_blank" rel="noopener">Flame Graphs</a>、调用树、方法列表，并且支持搜索、直接跳转到源码、转储等实用功能，包含 Java 和 Native 代码。</p>
+<img class data-src="/2019/02/19/IDEA-%E4%B9%8B-JVM-Profiler-%E6%B5%85%E6%9E%90/%E5%B7%A5%E5%85%B7%E7%AA%97%E5%8F%A3.png">
+
+<h1 id="浅析"><a href="#浅析" class="headerlink" title="浅析"></a>浅析</h1><h2 id="Profiler-的常见问题"><a href="#Profiler-的常见问题" class="headerlink" title="Profiler 的常见问题"></a>Profiler 的常见问题</h2><p>Profiling 过程中数据的获取方式主要有抽样统计和附加指令的方式，前者的典型应用有商用应用 JProfiler、YourKit，后者有诸如阿里的 Tprofiler 等。这两种方式，均存在若干缺陷：</p>
+<ol>
+<li><p><strong>附加指令</strong>：会增加了性能开销；同时因为修改了程序代码，导致java编译器的优化行为不确定；同时影响了代码的层次，层次越深自然也影响执行效率；</p>
+</li>
+<li><p><strong>抽样统计</strong>：获取系统范围的线程栈，JVM 必须处于 Safepoint 状态，只有当线 程处于 Safepoint 状态的时候，别的线程才能去获取它的线程栈，而这个 Safepoint 是由 JVM 控制的，这对于 Profiler 非常不利，有可能一个很热的代码块，JVM 不会在该代码块中间放置 Safepoint，导致 Profiler 无法获得该线程栈，导致错误的 Profiler 结果。</p>
+</li>
+</ol>
+<p>文章 <a href="http://dl.acm.org/citation.cfm?doid=1806596.1806618" target="_blank" rel="noopener">Evaluating the Accuracy of Java Profilers</a>，列举了xprof，hprof，jprofile 和 yourkit 四种采样器，并通过几个压测场景证明了这几种采样器的结果是相互矛盾的。总结的原因有： </p>
+<ol>
+<li><p>附加指令：不同的采样器会注入不同的代码，从而影响程序优化过程，同时也影响了Safepoint 的分布，进一步造成采样差异； </p>
+</li>
+<li><p>抽样统计：采样器采样点不够随机，这几种采样器都只有在 Safepoint 采样。</p>
+</li>
+</ol>
+<h2 id="JVM-Profiler-实现原理"><a href="#JVM-Profiler-实现原理" class="headerlink" title="JVM Profiler 实现原理"></a>JVM Profiler 实现原理</h2><p>IDEA 的 JVM Profiler 并不存在上述问题。</p>
+<p>IDEA 集成了低开销的采样分析器 <a href="https://github.com/jvm-profiling-tools/async-profiler" target="_blank" rel="noopener">async-profiler</a>，可以分析 JVM 和 Native 代码，并且不会受到 <a href="http://psy-lob-saw.blogspot.ru/2016/02/why-most-sampling-java-profilers-are.html" target="_blank" rel="noopener">Safepoint bias problem</a> 的影响。</p>
+<p>async-profiler 的基本原理是：AsyncGetCallTrace + perf_events，接收 perf_events 生成的调用堆栈，并将其与 AsyncGetCallTrace 生成的调用堆栈进行匹配，最终生成包含 Java 和 Native 代码的准确 Profiler 。</p>
+<h2 id="AsyncGetCallTrace"><a href="#AsyncGetCallTrace" class="headerlink" title="AsyncGetCallTrace"></a>AsyncGetCallTrace</h2><p>AsyncGetCallTrace 是 JVMTI 的一个非标准接口，Jeremy Manson 也通过其实现过简单的 Profiler 工具 <a href="https://code.google.com/archive/p/lightweight-java-profiler/wikis/GettingStarted.wiki" target="_blank" rel="noopener">Lightweight Asynchronous Sampling Profiler</a>，</p>
+<p>Jeremy Manson/Google 在文章中提及过通过用操作系统信号 SIGPROF 和 AsyncGetCallTrace 接口定时去采样堆栈，提升了采样准确率：</p>
+<blockquote>
+<p>The benefit of using this interface to write a profiler is that it can gather stack traces asynchronously. This avoids the inaccuracies of only being able to profile code at safe points, and the overhead of having to stop the JVM to gather a stack trace. The result is a more accurate profiler that avoids the 10-20% overhead of something like hprof. For a more thorough explanation as to why this is interesting, see <a href="http://jeremymanson.blogspot.com/2010/07/why-many-profilers-have-serious.html" target="_blank" rel="noopener">my 2010 writeup on the subject</a>.</p>
+</blockquote>
+<p>这种方式使用案例也有很多，如美团点评的 <a href="https://wiki.sankuai.com/pages/viewpage.action?pageId=1114388802" target="_blank" rel="noopener">性能优化平台 scalpel</a>、<a href="https://www.oracle.com/technetwork/articles/servers-storage-dev/studio-perf-tools-2293552.html" target="_blank" rel="noopener">Oracle Developer Studio Performance Tools</a>。</p>
+<p>作为浅析，到这里就结束了，如果想更深入的了解细节，可以查看相关文章和开源代码。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a href="https://blog.jetbrains.com/idea/2018/09/intellij-idea-2018-3-eap-git-submodules-jvm-profiler-macos-and-linux-and-more/" target="_blank" rel="noopener">https://blog.jetbrains.com/idea/2018/09/intellij-idea-2018-3-eap-git-submodules-jvm-profiler-macos-and-linux-and-more/</a></li>
+<li><a href="http://tacy.github.io/post/flamegraph/" target="_blank" rel="noopener">http://tacy.github.io/post/flamegraph/</a></li>
+<li><a href="https://wiki.sankuai.com/pages/viewpage.action?pageId=1114388802" target="_blank" rel="noopener">https://wiki.sankuai.com/pages/viewpage.action?pageId=1114388802</a></li>
+<li><a href="https://github.com/jvm-profiling-tools/async-profiler" target="_blank" rel="noopener">https://github.com/jvm-profiling-tools/async-profiler</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>分析实践</category>
+      </categories>
+      <tags>
+        <tag>IDEA</tag>
+        <tag>Profiler</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何做好团队学习分享</title>
+    <url>/2019/02/15/%E5%A6%82%E4%BD%95%E5%81%9A%E5%A5%BD%E5%9B%A2%E9%98%9F%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/</url>
+    <content><![CDATA[<h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>对于开发人员来说，学习成长，永远是重要且紧急的事情。在工作这么忙的情况下，如何高效的学习与成长呢？</p>
+<p>本文将围绕团队的学习分享进行阐述。</p>
+<a id="more"></a>
+
+<h1 id="为什么需要分享"><a href="#为什么需要分享" class="headerlink" title="为什么需要分享"></a>为什么需要分享</h1><h3 id="对分享者"><a href="#对分享者" class="headerlink" title="对分享者"></a>对分享者</h3><p>对于知识掌握的基本阶段，我将它分为三个层次</p>
+<ol>
+<li>读了、看了、听了</li>
+<li>整理了</li>
+<li>分享了</li>
+</ol>
+<p>分享，与了解、整理不同，是对知识更深层次的掌握，从这个角度出发，一次分享对于分享者的收益是远高于被分享者的。</p>
+<h3 id="对被分享者"><a href="#对被分享者" class="headerlink" title="对被分享者"></a>对被分享者</h3><p>时间是每个人的财富，确保高效的利用时间，才能够提升单位时间内创造的价值。</p>
+<p>分享可以在短暂的时间内，让被分享者极大效率的得到知识的精华部分，从而将有限的精力集中于最宝贵的事情上。</p>
+<h3 id="对团队"><a href="#对团队" class="headerlink" title="对团队"></a>对团队</h3><p>分享，是服务于团队自驱力和创造力建设的。单次的分享，对于团队的成长是有限的，但是分享带来的自驱力与创造力，为团队未来的发展提供了充分的想象空间。</p>
+<p>对于一个发展的团队，需要保持空杯心态，认为“永远不够好”是不断成长的重要手段。永远不够好并不是对自己的不认可，而是希望激励团队成员不断往前走，只有这样才能领略到前方的风景。</p>
+<h1 id="如何进行分享"><a href="#如何进行分享" class="headerlink" title="如何进行分享"></a>如何进行分享</h1><p>分享可以分为以下几个要素：</p>
+<h2 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h2><p>单次分享时间，过短，很难将分享进行透彻；过长，影响分享的质量，挤占了宝贵的工作时间。</p>
+<p>建议单次分享时间控制在 10 - 30 分钟，不包含讨论时间，典型的如：周会之后。</p>
+<h2 id="地点"><a href="#地点" class="headerlink" title="地点"></a>地点</h2><p>分享是一个需要深度参与的过程，深度的分享其中必然包含思考、实操、深研、整合，一个良好的空间环境为此提供保障。</p>
+<p>建议选择独立会议室，避免被打扰。</p>
+<h2 id="人物"><a href="#人物" class="headerlink" title="人物"></a>人物</h2><p>许多团队都是按照梯度化建设的，一个团队成员的能力层级往往会有区别，但是前后一般不超过两、三个职级，这样的差别并不会影响分享的进行，但是选题上需要有一定区分度。</p>
+<p>单次分享的人数，过少，分享的收益过低，并且发现的问题与可探讨的内容过少，不利于思想的碰撞；过多，准备成本、主讲人的把控力、参与者的参与度都得不到良好保障。</p>
+<p>建议单次分享参与人数在 5 - 10 人，可以弹性伸缩，保证能够深度参与。</p>
+<p>其中有两个关键人物：</p>
+<ol>
+<li>主讲人：分享者，此次分享的主要负责人，应当有简单的文章、PPT等。</li>
+<li>记录人：其中一名被分享者，负责简单记录此次分享，记录应当成体系文档，同时记录人作为下次主讲人。</li>
+</ol>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><ol>
+<li>主讲人分享，记录人记录，被分享人针对简单的问题可以随时探讨，复杂的问题先自行记录。</li>
+<li>问题探讨、发散、总结，深度参与的分享，可以包含实操的过程。</li>
+<li>如果主题未确定，记录人协调下次选题。</li>
+</ol>
+<h2 id="选题"><a href="#选题" class="headerlink" title="选题"></a>选题</h2><p>选题的好坏直接决定了分享是否成功，选题本身应该耗费精力，同时也是有路可循：</p>
+<ol>
+<li>经典：先分享经典，建立全局观，把握重点。</li>
+<li>前沿：交流是捷径，通过交流前沿知识，保持先进性。</li>
+<li>践行：能够实践的知识，可以更快、更好的被融会贯通。</li>
+<li>专家：专家的认知层级往往更高，能够提供更好的意见。</li>
+<li>系列：按专题成体系进行，容易形成叠加效应，进一步提升分享的收益。</li>
+</ol>
+<p>建议以点带面，技术团队可以围绕某技术点，快速切入。</p>
+<h1 id="个人思考"><a href="#个人思考" class="headerlink" title="个人思考"></a>个人思考</h1><p>分享的过程，不仅仅提升了相关的某项技能，更重要的是在过程中提升认知。</p>
+<p>这些思考主要来自<a href="https://mp.weixin.qq.com/s/kQ524fhTMWTsmLEnB4h4dA" target="_blank" rel="noopener">傅盛认知三部曲之一：所谓成长就是认知升级</a></p>
+<p>一个人认知的四种状态：</p>
+<ul>
+<li>不知道自己不知道</li>
+<li>知道自己不知道</li>
+<li>知道自己知道</li>
+<li>不知道自己知道</li>
+</ul>
+<p>简单翻译一下：</p>
+<ul>
+<li>不知道自己不知道：以为自己什么都知道，自以为是的认知状态。95%</li>
+<li>知道自己不知道：有敬畏之心，开始空杯心态，准备丰富自己的认知。4%</li>
+<li>知道自己知道：抓住了事情的规律，提升了自己的认知。0.9%</li>
+<li>不知道自己知道：永远保持空杯心态，认知的最高境界。0.1%</li>
+</ul>
+<h2 id="人和人最大的差别是认知"><a href="#人和人最大的差别是认知" class="headerlink" title="人和人最大的差别是认知"></a>人和人最大的差别是认知</h2><blockquote>
+<p>认知，几乎是人和人之间唯一的本质差别。</p>
+</blockquote>
+<p>技能的差别是可量化的，技能再多累加，也就是熟练工种。而认知的差别是本质的，是不可量化的。</p>
+<h2 id="认知升级的两个误区"><a href="#认知升级的两个误区" class="headerlink" title="认知升级的两个误区"></a>认知升级的两个误区</h2><h3 id="误区一：以为自己知道，远远不如以为自己不知道"><a href="#误区一：以为自己知道，远远不如以为自己不知道" class="headerlink" title="误区一：以为自己知道，远远不如以为自己不知道"></a>误区一：以为自己知道，远远不如以为自己不知道</h3><blockquote>
+<p>自以为是，是自我认知升级的死敌。<br>自我否定，就是假设自己无知，是自我认知升级的唯一路径。</p>
+</blockquote>
+<h3 id="误区二：以为自己认为重要和真的认为重要，往往不是一回事"><a href="#误区二：以为自己认为重要和真的认为重要，往往不是一回事" class="headerlink" title="误区二：以为自己认为重要和真的认为重要，往往不是一回事"></a>误区二：以为自己认为重要和真的认为重要，往往不是一回事</h3><p>有一个词叫自我迷惑。自认为觉得很重要，但根本没把它转化成真正的行动。</p>
+<blockquote>
+<p>不行动的认知，就是伪认知。</p>
+</blockquote>
+<blockquote>
+<p>上士闻道，勤而行之，中士闻道，若存若亡，下士闻道则大笑之，不笑不足以为道。</p>
+</blockquote>
+<p>大道理听多了，是时候实践了。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a href="https://www.atatech.org/articles/129463" target="_blank" rel="noopener">https://www.atatech.org/articles/129463</a></li>
+<li><a href="http://ningg.top/fusheng-series-01-knowledge-upgrade/" target="_blank" rel="noopener">http://ningg.top/fusheng-series-01-knowledge-upgrade/</a></li>
+<li><a href="http://ningg.top/tech-history-wangxing-and-wanghuiwen-talk-about-reading/" target="_blank" rel="noopener">http://ningg.top/tech-history-wangxing-and-wanghuiwen-talk-about-reading/</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>团队管理</category>
+      </categories>
+      <tags>
+        <tag>学习分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CGLIB 和 JDK 动态代理性能测试</title>
+    <url>/2018/05/02/CGLIB-%E5%92%8C-JDK-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>Spring Framework 提供了两种动态代理的实现，CGLIB 和 JDK 动态代理，并且提供了 proxy-target-class。</p>
+<p>两者实现方式上并不相同，初步看来 CGLIB 性能上应该有优势，但是没有实际数据作为支撑。</p>
+<a id="more"></a>
+
+<p>从 Spring Boot 2.0 开始，默认的 AOP 策略已经更换为 CGLIB，即 proxy-target-class = true。</p>
+<p><strong>可以先看结论再看分析</strong></p>
+<h4 id="参考来源"><a href="#参考来源" class="headerlink" title="参考来源"></a>参考来源</h4><p>主要参考了如下两篇文章的数据：</p>
+<ul>
+<li><p>[1]<a href="http://www.cnblogs.com/haiq/p/4304615.html" target="_blank" rel="noopener">Cglib 与 JDK动态代理的运行性能比较</a></p>
+</li>
+<li><p>[2]<a href="http://adolphor.com/blog/2016/12/14/java-proxy-performance.html" target="_blank" rel="noopener">Java代理性能比较</a></p>
+</li>
+</ul>
+<p><strong>两者的结论完全相反</strong></p>
+<p>后续主要参考了：</p>
+<ul>
+<li>[3]<a href="https://www.jianshu.com/p/1aaacf92e2cd" target="_blank" rel="noopener">cglib和jdk动态代理 调用性能测试</a></li>
+</ul>
+<p>提供了一定思路，但是结论并不相同</p>
+<h3 id="情况分析"><a href="#情况分析" class="headerlink" title="情况分析"></a>情况分析</h3><h4 id="CGLIB-基于类与接口的区别"><a href="#CGLIB-基于类与接口的区别" class="headerlink" title="CGLIB 基于类与接口的区别"></a>CGLIB 基于类与接口的区别</h4><p>关键代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public void setSuperclass(Class superclass) &#123;</span><br><span class="line">    if (superclass != null &amp;&amp; superclass.isInterface()) &#123;</span><br><span class="line">        this.setInterfaces(new Class[]&#123;superclass&#125;);</span><br><span class="line">    &#125; else if (superclass != null &amp;&amp; superclass.equals(Object.class)) &#123;</span><br><span class="line">        this.superclass = null;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        this.superclass = superclass;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>基于类和接口生成的代理类，均继承自 FastClass，其中前者生成的代码 switch 和 case 数量均较多，<em>可能</em>是两种方式下性能差距的原因之一。</p>
+<h4 id="CGLIB-与-Method-数量的关系"><a href="#CGLIB-与-Method-数量的关系" class="headerlink" title="CGLIB 与 Method 数量的关系"></a>CGLIB 与 Method 数量的关系</h4><p>CGLIB 的 invoke 基于 switch 实现，Method 数量较多的情况下，性能下降严重。</p>
+<h4 id="JDK-动态代理的实现"><a href="#JDK-动态代理的实现" class="headerlink" title="JDK 动态代理的实现"></a>JDK 动态代理的实现</h4><p>实现相对简单，代理类实现了被代理接口，并生成了 java.lang.reflect.Method。</p>
+<h3 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h3><h4 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h4><ul>
+<li>OS: 64bit Mac OS X 10.13.4</li>
+<li>CPU: Intel Core i7-4770HQ @ 2.20GHz</li>
+<li>RAM: 16GB</li>
+<li>JDK: Oracle JDK 10.0.1</li>
+<li>CGLIB: Spring 5.0.5.RELEASE 内嵌</li>
+<li>JMH: 1.20</li>
+</ul>
+<h4 id="实验数据"><a href="#实验数据" class="headerlink" title="实验数据"></a>实验数据</h4><table>
+<thead>
+<tr>
+<th>方式</th>
+<th>分数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cglibBigClassEndProxy</td>
+<td>339.777</td>
+</tr>
+<tr>
+<td>cglibBigClassProxy</td>
+<td>331.552</td>
+</tr>
+<tr>
+<td>cglibBigEndProxy</td>
+<td>358.999</td>
+</tr>
+<tr>
+<td>cglibBigProxy</td>
+<td>359.476</td>
+</tr>
+<tr>
+<td>cglibSmallClassProxy</td>
+<td>578.817</td>
+</tr>
+<tr>
+<td>cglibSmallProxy</td>
+<td>618.582</td>
+</tr>
+<tr>
+<td>jdkBigEndProxy</td>
+<td>432.813</td>
+</tr>
+<tr>
+<td>jdkBigProxy</td>
+<td>434.224</td>
+</tr>
+<tr>
+<td>jdkSmallProxy</td>
+<td>432.592</td>
+</tr>
+</tbody></table>
+<p>说明</p>
+<ul>
+<li>Big：含有 50 个 Method</li>
+<li>Small：含有 5 个 Method</li>
+<li>End：使用<em>最后<em>的 Method，否则使用</em>首个</em></li>
+<li>Class：使用<em>类</em>作为被代理的内容</li>
+</ul>
+<h4 id="实验代码"><a href="#实验代码" class="headerlink" title="实验代码"></a>实验代码</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package com.example.demo;</span><br><span class="line"></span><br><span class="line">import org.openjdk.jmh.annotations.Benchmark;</span><br><span class="line">import org.openjdk.jmh.annotations.OutputTimeUnit;</span><br><span class="line">import org.openjdk.jmh.annotations.Scope;</span><br><span class="line">import org.openjdk.jmh.annotations.State;</span><br><span class="line">import org.openjdk.jmh.runner.Runner;</span><br><span class="line">import org.openjdk.jmh.runner.options.Options;</span><br><span class="line">import org.openjdk.jmh.runner.options.OptionsBuilder;</span><br><span class="line">import org.springframework.cglib.proxy.Enhancer;</span><br><span class="line">import org.springframework.cglib.proxy.MethodInterceptor;</span><br><span class="line">import org.springframework.cglib.proxy.MethodProxy;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.InvocationHandler;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line">import java.lang.reflect.Proxy;</span><br><span class="line">import java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line">@OutputTimeUnit(TimeUnit.SECONDS)</span><br><span class="line">@State(Scope.Thread)</span><br><span class="line">public class DynamicProxyPerformanceTest &#123;</span><br><span class="line"></span><br><span class="line">    private static final int TEST_COUNT = 50_0000;</span><br><span class="line">    private static NopBigService jdkBigProxy;</span><br><span class="line">    private static NopBigService cglibBigProxy;</span><br><span class="line">    private static NopBigService cglibBigClassProxy;</span><br><span class="line">    private static NopSmallService jdkSmallProxy;</span><br><span class="line">    private static NopSmallService cglibSmallProxy;</span><br><span class="line">    private static NopSmallService cglibSmallClassProxy;</span><br><span class="line"></span><br><span class="line">    private static void init() &#123;</span><br><span class="line"></span><br><span class="line">        NopBigService nopBigService = new NopBigServiceImpl();</span><br><span class="line"></span><br><span class="line">        NopSmallService nopSmallService = new NopSmallServiceImpl();</span><br><span class="line">        jdkBigProxy = createJdkBigDynamicProxy(nopBigService);</span><br><span class="line">        cglibBigProxy = createCglibBigDynamicProxy(nopBigService);</span><br><span class="line">        cglibBigClassProxy = createCglibBigClassDynamicProxy(nopBigService);</span><br><span class="line">        jdkSmallProxy = createJdkSmallDynamicProxy(nopSmallService);</span><br><span class="line">        cglibSmallProxy = createCglibSmallDynamicProxy(nopSmallService);</span><br><span class="line">        cglibSmallClassProxy = createCglibSmallClassDynamicProxy(nopSmallService);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    static &#123;</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line">        Options opt = new OptionsBuilder()</span><br><span class="line">                .include(DynamicProxyPerformanceTest.class.getSimpleName())</span><br><span class="line">                .forks(1)</span><br><span class="line">                .warmupIterations(0)</span><br><span class="line">                .measurementIterations(1)</span><br><span class="line">                .build();</span><br><span class="line">        new Runner(opt).run();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Benchmark</span><br><span class="line">    public void jdkBigProxy() &#123;</span><br><span class="line">        for (int i = 0; i &lt; TEST_COUNT; i++) &#123;</span><br><span class="line">            jdkBigProxy.m1();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Benchmark</span><br><span class="line">    public void jdkBigEndProxy() &#123;</span><br><span class="line">        for (int i = 0; i &lt; TEST_COUNT; i++) &#123;</span><br><span class="line">            jdkBigProxy.m49();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Benchmark</span><br><span class="line">    public void jdkSmallProxy() &#123;</span><br><span class="line">        for (int i = 0; i &lt; TEST_COUNT; i++) &#123;</span><br><span class="line">            jdkSmallProxy.m1();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Benchmark</span><br><span class="line">    public void cglibBigProxy() &#123;</span><br><span class="line">        for (int i = 0; i &lt; TEST_COUNT; i++) &#123;</span><br><span class="line">            cglibBigProxy.m1();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Benchmark</span><br><span class="line">    public void cglibBigEndProxy() &#123;</span><br><span class="line">        for (int i = 0; i &lt; TEST_COUNT; i++) &#123;</span><br><span class="line">            cglibBigProxy.m49();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Benchmark</span><br><span class="line">    public void cglibSmallProxy() &#123;</span><br><span class="line">        for (int i = 0; i &lt; TEST_COUNT; i++) &#123;</span><br><span class="line">            cglibSmallProxy.m1();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Benchmark</span><br><span class="line">    public void cglibBigClassProxy() &#123;</span><br><span class="line">        for (int i = 0; i &lt; TEST_COUNT; i++) &#123;</span><br><span class="line">            cglibBigClassProxy.m1();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Benchmark</span><br><span class="line">    public void cglibBigClassEndProxy() &#123;</span><br><span class="line">        for (int i = 0; i &lt; TEST_COUNT; i++) &#123;</span><br><span class="line">            cglibBigClassProxy.m49();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Benchmark</span><br><span class="line">    public void cglibSmallClassProxy() &#123;</span><br><span class="line">        for (int i = 0; i &lt; TEST_COUNT; i++) &#123;</span><br><span class="line">            cglibSmallClassProxy.m1();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private static NopBigService createJdkBigDynamicProxy(</span><br><span class="line">            final NopBigService delegate) &#123;</span><br><span class="line">        return (NopBigService) Proxy</span><br><span class="line">                .newProxyInstance(ClassLoader.getSystemClassLoader(),</span><br><span class="line">                        new Class[]&#123;NopBigService.class&#125;,</span><br><span class="line">                        new JdkHandler(delegate));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static NopSmallService createJdkSmallDynamicProxy(</span><br><span class="line">            final NopSmallService delegate) &#123;</span><br><span class="line">        return (NopSmallService) Proxy</span><br><span class="line">                .newProxyInstance(ClassLoader.getSystemClassLoader(),</span><br><span class="line">                        new Class[]&#123;NopSmallService.class&#125;,</span><br><span class="line">                        new JdkHandler(delegate));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static class JdkHandler implements InvocationHandler &#123;</span><br><span class="line"></span><br><span class="line">        final Object delegate;</span><br><span class="line"></span><br><span class="line">        JdkHandler(Object delegate) &#123;</span><br><span class="line">            this.delegate = delegate;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public Object invoke(Object object, Method method, Object[] objects)</span><br><span class="line">                throws Throwable &#123;</span><br><span class="line">            return method.invoke(delegate, objects);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static NopBigService createCglibBigDynamicProxy(</span><br><span class="line">            final NopBigService delegate) &#123;</span><br><span class="line">        Enhancer enhancer = new Enhancer();</span><br><span class="line">        enhancer.setCallback(new CglibInterceptor(delegate));</span><br><span class="line">        enhancer.setSuperclass(NopBigService.class);</span><br><span class="line">        return (NopBigService) enhancer.create();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static NopSmallService createCglibSmallDynamicProxy(</span><br><span class="line">            final NopSmallService delegate) &#123;</span><br><span class="line">        Enhancer enhancer = new Enhancer();</span><br><span class="line">        enhancer.setCallback(new CglibInterceptor(delegate));</span><br><span class="line">        enhancer.setSuperclass(NopSmallService.class);</span><br><span class="line">        return (NopSmallService) enhancer.create();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static NopBigService createCglibBigClassDynamicProxy(</span><br><span class="line">            final NopBigService delegate) &#123;</span><br><span class="line">        Enhancer enhancer = new Enhancer();</span><br><span class="line">        enhancer.setCallback(new CglibInterceptor(delegate));</span><br><span class="line">        enhancer.setSuperclass(NopBigServiceImpl.class);</span><br><span class="line">        return (NopBigService) enhancer.create();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static NopSmallService createCglibSmallClassDynamicProxy(</span><br><span class="line">            final NopSmallService delegate) &#123;</span><br><span class="line">        Enhancer enhancer = new Enhancer();</span><br><span class="line">        enhancer.setCallback(new CglibInterceptor(delegate));</span><br><span class="line">        enhancer.setSuperclass(NopSmallServiceImpl.class);</span><br><span class="line">        return (NopSmallService) enhancer.create();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static class CglibInterceptor implements MethodInterceptor &#123;</span><br><span class="line"></span><br><span class="line">        final Object delegate;</span><br><span class="line"></span><br><span class="line">        CglibInterceptor(Object delegate) &#123;</span><br><span class="line">            this.delegate = delegate;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public Object intercept(Object object, Method method, Object[] objects,</span><br><span class="line">                                MethodProxy methodProxy) throws Throwable &#123;</span><br><span class="line">            return methodProxy.invoke(delegate, objects);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>对于 CGLIB 和 JDK 动态代理，均可将生成的代理类保存，便于查看，具体方法可以自行搜索。</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><ol>
+<li>CGLIB 对类进行代理比接口慢，随着 Method 数量上升差距逐渐减少</li>
+<li>CGLIB 随着 Method 数量上升，性能出现比较严重的下降</li>
+<li>CGLIB 被调用 Method 的位置对于性能无影响（<em>可能</em>与相关优化有关）</li>
+<li>JDK 动态代理性能不受 Method 数量影响</li>
+<li>CGLIB 的性能在 Method 较少时优于 JDK 动态代理，较多时相反</li>
+</ol>
+]]></content>
+      <categories>
+        <category>分析实践</category>
+      </categories>
+      <tags>
+        <tag>CGLIB</tag>
+        <tag>AOP</tag>
+        <tag>Java</tag>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis总结(1)——基础知识</title>
+    <url>/2017/12/05/Redis%E6%80%BB%E7%BB%93-1-%E2%80%94%E2%80%94%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Redis是一种基于键值对（key-value）的 NoSQL 数据库，与其他不同的是，Redis 中的值可以是由 string（字符串）、hash（哈希）、list（列表）、set（集合）、zset（有序集合）、Bitmaps（位图）、HyperLogLog（基数统计）、GEO（地理信息定位）等多种数据结构和算法组成，提供了快照、日志等存储，键过期、发布订阅、事务、流水线、Lua 脚本等附加功能。</p>
+<a id="more"></a>
+
+<h3 id="Redis-特性"><a href="#Redis-特性" class="headerlink" title="Redis 特性"></a>Redis 特性</h3><h4 id="速度快"><a href="#速度快" class="headerlink" title="速度快"></a>速度快</h4><ul>
+<li>所有数据存放在内存中</li>
+<li>C 语言实现</li>
+<li>单线程架构，避免竞争</li>
+<li>源码质量高</li>
+</ul>
+<h4 id="基于键值对的数据结构服务器"><a href="#基于键值对的数据结构服务器" class="headerlink" title="基于键值对的数据结构服务器"></a>基于键值对的数据结构服务器</h4><ul>
+<li>全称：Remote Dictionary Server</li>
+<li>5种数据结构：string（字符串）、hash（哈希）、list（列表）、set（集合）、zset（有序集合）</li>
+<li>字符串基础上演变出：Bitmaps（位图）、HyperLogLog（基数统计）</li>
+<li>3.2加入：GEO（地理信息定位）</li>
+</ul>
+<h4 id="丰富的功能"><a href="#丰富的功能" class="headerlink" title="丰富的功能"></a>丰富的功能</h4><ul>
+<li>过期键：实现缓存</li>
+<li>发布订阅：消息系统</li>
+<li>Lua 脚本：创造新的命令</li>
+<li>事务功能：一定程度上保证数据特性</li>
+<li>流水线（Pipeline）：减少网络开销</li>
+</ul>
+<h4 id="简单稳定"><a href="#简单稳定" class="headerlink" title="简单稳定"></a>简单稳定</h4><ul>
+<li>源码很少，开发、运维能够完全吃透</li>
+<li>单线程模型，处理简单，开发简单</li>
+<li>不依赖操作系统的类库</li>
+</ul>
+<h4 id="客户端语言多"><a href="#客户端语言多" class="headerlink" title="客户端语言多"></a>客户端语言多</h4><ul>
+<li>提供简单的 TCP 通信协议</li>
+<li>认可度高，覆盖主流语言</li>
+</ul>
+<h4 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h4><ul>
+<li>RDB</li>
+<li>AOF</li>
+</ul>
+<h4 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h4><ul>
+<li>多 Redis 副本</li>
+</ul>
+<h4 id="高可用和分布式"><a href="#高可用和分布式" class="headerlink" title="高可用和分布式"></a>高可用和分布式</h4><ul>
+<li>Sentinel：故障发现、故障转移</li>
+<li>Redis Cluster：真正的分布式实现，高可用、读写和容量的扩展性</li>
+</ul>
+<h3 id="Redis-使用场景"><a href="#Redis-使用场景" class="headerlink" title="Redis 使用场景"></a>Redis 使用场景</h3><h4 id="Redis-可以做什么"><a href="#Redis-可以做什么" class="headerlink" title="Redis 可以做什么"></a>Redis 可以做什么</h4><ul>
+<li>缓存：减少数据源压力，灵活控制最大内存和淘汰策略</li>
+<li>排行榜系统：基于列表和有序集合构建</li>
+<li>计数器应用：播放数、浏览量等数据，保证实时性和高并发</li>
+<li>社交网络：赞/踩、粉丝、共同好友、推送、下拉刷新等</li>
+<li>消息队列：基于发布订阅和阻塞队列，实现业务解耦、削峰</li>
+</ul>
+<h4 id="Redis-不可以做什么"><a href="#Redis-不可以做什么" class="headerlink" title="Redis 不可以做什么"></a>Redis 不可以做什么</h4><ul>
+<li>大数据量：成本高</li>
+<li>冷数据使用：浪费</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Kotlin基础(1)——解构声明</title>
+    <url>/2017/06/03/Kotlin%E5%9F%BA%E7%A1%80-1-%E2%80%94%E2%80%94%E8%A7%A3%E6%9E%84%E5%A3%B0%E6%98%8E/</url>
+    <content><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>解构声明, Destructuring Declarations, 是一种将对象解构的语法, 可以一次创建多个变量</p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">val (name, age) = person</span><br></pre></td></tr></table></figure>
+
+<p>可以通过结构声明快速创建变量, 如 name &amp; age, 可以独立使用它们</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">println(name)</span><br><span class="line">println(age)</span><br></pre></td></tr></table></figure>
+
+<p>解构声明会被编译成以下代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">val name = person.component1()</span><br><span class="line">val age = person.component2()</span><br></pre></td></tr></table></figure>
+
+<p><code>componentN()</code> 为获取对象的第 N 个属性</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><h4 id="函数返回多个值"><a href="#函数返回多个值" class="headerlink" title="函数返回多个值"></a>函数返回多个值</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">data class Result(val result: Int, val status: Status)</span><br><span class="line">fun function(...): Result &#123;</span><br><span class="line">    // computations</span><br><span class="line"></span><br><span class="line">    return Result(result, status)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Now, to use this function:</span><br><span class="line">val (result, status) = function(...)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Map-的返回"><a href="#Map-的返回" class="headerlink" title="Map 的返回"></a>Map 的返回</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">val map = hashMapOf(1 to &quot;one&quot;, 2 to &quot;two&quot;)</span><br><span class="line"></span><br><span class="line">for ((key, value) in map) &#123;</span><br><span class="line">    print(&quot;$key to $value&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="特殊用法"><a href="#特殊用法" class="headerlink" title="特殊用法"></a>特殊用法</h3><h4 id="忽略未使用变量"><a href="#忽略未使用变量" class="headerlink" title="忽略未使用变量"></a>忽略未使用变量</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">val (_, status) = getResult()</span><br></pre></td></tr></table></figure>
+
+<h4 id="在-Lambda-表达式中的使用"><a href="#在-Lambda-表达式中的使用" class="headerlink" title="在 Lambda 表达式中的使用"></a>在 Lambda 表达式中的使用</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">val map = mapOf(1 to &quot;one&quot;, 2 to &quot;two&quot;)</span><br><span class="line"></span><br><span class="line">map.mapValues &#123; entry -&gt; println(entry.value) &#125;</span><br><span class="line">map.mapValues &#123; (_, value) -&gt; println(value) &#125;</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Kotlin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ZooKeeper(1)——安装与简介</title>
+    <url>/2017/05/22/ZooKeeper-1-%E2%80%94%E2%80%94%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%80%E4%BB%8B/</url>
+    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>ZooKeeper 是目前使用较多的分布式协调手段，通过安装和简单使用 ZooKeeper, 为接下来的研究做准备.</p>
+<a id="more"></a>
+
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="HomeBrew-安装"><a href="#HomeBrew-安装" class="headerlink" title="HomeBrew 安装"></a>HomeBrew 安装</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">brew install zookeeper</span><br></pre></td></tr></table></figure>
+<p>安装完成的 ZK 并不是集群模式, 仅提供 zkCli, 接下来介绍安装 ZK 集群.</p>
+<h4 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h4><p>推荐使用 Docker for Mac, 基于<a href="https://github.com/docker/HyperKit/" target="_blank" rel="noopener">HyperKit</a>的本地应用</p>
+<h4 id="Docker-Compose配置集群"><a href="#Docker-Compose配置集群" class="headerlink" title="Docker Compose配置集群"></a>Docker Compose配置集群</h4><p>参考: 来自<a href="https://store.docker.com/images/zookeeper" target="_blank" rel="noopener">Docker Store</a></p>
+<h5 id="编辑配置"><a href="#编辑配置" class="headerlink" title="编辑配置"></a>编辑配置</h5><p>以 Visual Studio Code 为例, 执行以下代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">code docker-compose.yml</span><br></pre></td></tr></table></figure>
+<p>输入内容:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">version: &apos;2&apos;</span><br><span class="line">services:</span><br><span class="line">    zoo1:</span><br><span class="line">        image: zookeeper</span><br><span class="line">        restart: always</span><br><span class="line">        ports:</span><br><span class="line">            - 2181:2181</span><br><span class="line">        environment:</span><br><span class="line">            ZOO_MY_ID: 1</span><br><span class="line">            ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888</span><br><span class="line"></span><br><span class="line">    zoo2:</span><br><span class="line">        image: zookeeper</span><br><span class="line">        restart: always</span><br><span class="line">        ports:</span><br><span class="line">            - 2182:2181</span><br><span class="line">        environment:</span><br><span class="line">            ZOO_MY_ID: 2</span><br><span class="line">            ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888</span><br><span class="line"></span><br><span class="line">    zoo3:</span><br><span class="line">        image: zookeeper</span><br><span class="line">        restart: always</span><br><span class="line">        ports:</span><br><span class="line">            - 2183:2181</span><br><span class="line">        environment:</span><br><span class="line">            ZOO_MY_ID: 3</span><br><span class="line">            ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888</span><br></pre></td></tr></table></figure>
+
+<h5 id="启动集群"><a href="#启动集群" class="headerlink" title="启动集群"></a>启动集群</h5><p>执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker-compose up</span><br></pre></td></tr></table></figure>
+
+<h4 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h4><p>执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 默认参数</span><br><span class="line">zkCli</span><br></pre></td></tr></table></figure>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><h4 id="常用-API"><a href="#常用-API" class="headerlink" title="常用 API"></a>常用 API</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 帮助</span><br><span class="line">help</span><br><span class="line"></span><br><span class="line"># 创建节点并包含数据</span><br><span class="line">create /path data</span><br><span class="line"></span><br><span class="line"># 删除节点</span><br><span class="line">delete /path</span><br><span class="line"></span><br><span class="line"># 检查节点是否存在</span><br><span class="line">exists /path</span><br><span class="line"></span><br><span class="line"># 设置数据</span><br><span class="line">setData /path data</span><br><span class="line"></span><br><span class="line"># 获取数据</span><br><span class="line">getData /path data</span><br><span class="line"></span><br><span class="line"># 获取子节点列表</span><br><span class="line">getChildren /path</span><br></pre></td></tr></table></figure>
+
+<h4 id="znode类型"><a href="#znode类型" class="headerlink" title="znode类型"></a>znode类型</h4><h5 id="持久节点和临时节点"><a href="#持久节点和临时节点" class="headerlink" title="持久节点和临时节点"></a>持久节点和临时节点</h5><ol>
+<li>持久节点只能通过delete删除</li>
+<li>临时节点除主动删除外，当创建该 znode 的客户端的会话超时或主动关闭而中止时也会删除</li>
+</ol>
+<h5 id="有序节点"><a href="#有序节点" class="headerlink" title="有序节点"></a>有序节点</h5><p>当创建有序（sequential）节点创建时，唯一一个单调递增的证书会被追加到路径后，如 /task/task-，追加后/task/task-1。</p>
+<h4 id="监视与通知"><a href="#监视与通知" class="headerlink" title="监视与通知"></a>监视与通知</h4><p>为了代替客户端轮询，Zookeeper 使用了基于通知（notification）的机制：客户端向 ZooKeeper 注册需要接收到通知的 znode，通过对 znode 设置监视点（watch）来接收通知。</p>
+<p>接收通知为单次操作，接收多个通知需要每次接收后设置一个新的监视点。</p>
+<p>另外一个重要保障是，ZooKeeper 先向客户端传送通知，再对节点进行变更。</p>
+<h4 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h4><p>每一个 znode 都有一个版本号，随着每次数据变化递增，setData 和 delete 会以版本号作为传入参数，一致时才能成功。</p>
+<h4 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h4><p>ZooKeeper 服务端运行于两种模式下</p>
+<ul>
+<li>独立模式（standalone）</li>
+<li>仲裁/集群模式（quorum）</li>
+</ul>
+<h5 id="ZooKeeper-仲裁"><a href="#ZooKeeper-仲裁" class="headerlink" title="ZooKeeper 仲裁"></a>ZooKeeper 仲裁</h5><p>法定人数是指保存了数据的最小客户端数量，为了避免脑裂，法定人数需要超过半数。<br>服务器个数一般是奇数，偶数会使系统变脆弱，如4个服务器就需要3个可用。</p>
+<h5 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h5><p>ZooKeeper 所有操作均在关联的会话上，基于 TCP 协议进行通信。<br>会话提供顺序保证，同一个会话请求中以 FIFO 进行执行，但不保证多个会话。</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>ZooKeeper</tag>
+      </tags>
+  </entry>
+</search>
