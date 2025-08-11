@@ -1,0 +1,75 @@
+baseURL: https://qiyuey.top/
+languageCode: en-us
+title: YC's Blog
+theme: [ "PaperMod" ]
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+caches:
+  images:
+    dir: :cacheDir/images
+
+menu:
+  main:
+    - name: 🏠Home
+      url: /
+      weight: 10
+    - name: 📝Archives
+      url: archives/
+      weight: 20
+    - name: 🗂️Categories
+      url: categories/
+      weight: 30
+    - name: 🏷️Tags
+      url: tags/
+      weight: 40
+    - name: 🔍Search
+      url: search/
+      weight: 50
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # necessary for search
+
+params:
+  env: production
+  title: YC's Blog
+  description: "YC's Blog"
+  keywords: [ "YC", "Blog" ]
+  author: YC
+  defaultTheme: auto # to switch between dark or light according to the browser theme
+  disableThemeToggle: true
+
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: true
+  UseHugoToc: true
+  ShowToc: true
+  TocOpen: true
+  comments: true
+
+  homeInfoParams:
+    Title: Hi there 👋
+    Content: Welcome to my blog!
+
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    # limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
+    keys: [ "title", "permalink", "summary", "content" ]
