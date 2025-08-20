@@ -76,3 +76,5 @@ Thanks for taking the time to read my story. Here's to the journey ahead! 🚀
 ---
 
 *P.S. - If you know any good Chinese restaurants in the South Bay area, please let me know.
+
+chenmoHlu'bogh valwI' le' ghItlhpu'bogh lut 'oH.
