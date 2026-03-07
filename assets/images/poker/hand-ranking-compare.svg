@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-label="德州扑克比牌示意图">
+  <defs>
+    <style>
+      .title{font:700 34px Arial,sans-serif;fill:#111827}
+      .h2{font:700 24px Arial,sans-serif;fill:#111827}
+      .txt{font:500 20px Arial,sans-serif;fill:#1f2937}
+      .small{font:500 18px Arial,sans-serif;fill:#374151}
+      .card{fill:#ffffff;stroke:#cbd5e1;stroke-width:2;rx:10}
+      .red{fill:#dc2626}
+      .blk{fill:#111827}
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="680" fill="#f8fafc"/>
+  <text x="40" y="56" class="title">摊牌比较示意：同一公共牌下比较最佳 5 张</text>
+
+  <rect x="40" y="90" width="1120" height="130" rx="14" fill="#eef2ff" stroke="#c7d2fe"/>
+  <text x="60" y="130" class="h2">公共牌（Board）</text>
+  <text x="60" y="172" class="txt">A♠  K♠  Q♠  J♠  2♦</text>
+  <text x="60" y="205" class="small">所有玩家共享这 5 张牌</text>
+
+  <rect x="40" y="250" width="540" height="270" rx="14" fill="#ecfeff" stroke="#a5f3fc"/>
+  <text x="60" y="290" class="h2">玩家 A 私牌</text>
+  <text x="60" y="328" class="txt">T♠  9♣</text>
+  <text x="60" y="370" class="txt">最佳 5 张：A♠ K♠ Q♠ J♠ T♠</text>
+  <text x="60" y="404" class="small">牌型：皇家同花顺（Royal Flush）</text>
+
+  <rect x="620" y="250" width="540" height="270" rx="14" fill="#fff7ed" stroke="#fdba74"/>
+  <text x="640" y="290" class="h2">玩家 B 私牌</text>
+  <text x="640" y="328" class="txt">A♦  A♣</text>
+  <text x="640" y="370" class="txt">最佳 5 张：A♠ A♦ A♣ K♠ Q♠</text>
+  <text x="640" y="404" class="small">牌型：三条 A（Three of a Kind）</text>
+
+  <rect x="40" y="548" width="1120" height="90" rx="14" fill="#dcfce7" stroke="#86efac"/>
+  <text x="60" y="604" class="h2">结论：玩家 A 获胜（同花顺 > 三条）</text>
+</svg>
