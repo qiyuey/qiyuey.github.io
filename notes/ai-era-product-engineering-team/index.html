@@ -228,7 +228,7 @@ About
 </blockquote>
 <h2 id="翻译链正在成为最大的组织负债">翻译链正在成为最大的组织负债</h2>
 <p>传统产研分工的本质是一条翻译链。PM 把业务意图翻译成 PRD，设计师把 PRD 翻译成视觉稿，前端把视觉稿翻译成页面，后端把需求翻译成接口。每一次翻译都有信息损耗，每一次 handoff 都是等待和误解的温床。</p>
-<p>这条链路在过去是必要的，因为”把想法变成可运行的界面”需要专业技能和大量时间。但 AI 正在让这个前提失效。</p>
+<p>这条链路在过去是必要的，因为”把想法变成可运行的实现”需要专业技能和大量时间。但 AI 正在让这个前提失效。</p>
 <p>Jenny Wen 在 Anthropic 观察到的变化已经很具体：设计师花在设计稿上的时间从 60-70% 降到 30-40%，与工程师直接配合的时间从 20% 升到 30-40%，还多出了一块——自己写代码。Boris Cherny 每天发出 20-30 个 PR，没有手动写过一行。Anthropic 内部甚至取消了固定头衔，所有人都是 Member of Technical Staff，因为边界已经模糊到不值得区分。</p>
 <p>这不是个别公司的激进实验。这是当翻译成本趋近于零时，组织结构必然发生的相变。</p>
 <pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="plaintext"><code><span class="line"><span>传统链路（4+ 环节，每步翻译 + 等待）：</span></span>
@@ -285,7 +285,7 @@ About
 
 <table><thead><tr><th></th><th>spec owner</th><th>产品工程师</th></tr></thead><tbody><tr><td><strong>谁来做</strong></td><td>PM 或产品向研发</td><td>后端工程师成长而来</td></tr><tr><td><strong>核心产出</strong></td><td>executable spec（可执行规格）</td><td>生产级代码与系统</td></tr><tr><td><strong>对什么负责</strong></td><td>需求正确性、业务意图表达</td><td>线上结果、系统可维护性</td></tr><tr><td><strong>简单改动</strong></td><td>直接验收发布</td><td>不需要经手</td></tr><tr><td><strong>核心能力</strong></td><td>业务判断 + AI 工具</td><td>领域模型 + 全栈交付 + AI 杠杆</td></tr></tbody></table>
 <h3 id="离业务最近的人产出-executable-spec">离业务最近的人产出 executable spec</h3>
-<p>不再停留在 PRD 和原型图。借助 AI 工具，离业务意图最近的人直接产出一个可看、可点、可验证的 Web 版本——这就是 executable spec（可执行规格）。需求不再是文档，而是直接以可运行的形态存在。</p>
+<p>不再停留在 PRD 和原型图。借助 AI 工具，离业务意图最近的人直接产出一个可看、可点、可验证的可运行版本——这就是 executable spec（可执行规格）。需求不再是文档，而是直接以可运行的形态存在。</p>
 <p>做这件事的人通常是 PM，但不限于 PM。很多技术项目本身就是有产品判断力的研发在主推，研发在早期天然承担了定义需求和验证方向的角色。谁离业务意图最近、谁对”这个功能该做成什么样”有判断，谁就应该是 executable spec 的 owner。</p>
 <p>executable spec 不是生产代码，但它必须做到：</p>
 <ul>
