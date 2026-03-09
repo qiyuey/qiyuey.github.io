@@ -1,0 +1,575 @@
+<!DOCTYPE html><html dir="ltr" lang="zh-CN" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://qiyuey.top/notes/synapse-thinking-os/"><meta name="generator" content="Astro v5.18.0"><!-- System font stack - no remote loading needed --><!-- General Meta Tags --><title>Synapse：一个 AI-native 的个人 Thinking OS | Synapse</title><meta name="title" content="Synapse：一个 AI-native 的个人 Thinking OS | Synapse"><meta name="description" content="Synapse 不是笔记工具，而是一个 AI-native 的 Thinking OS——让 AI 承担从信息到判断的全部中间工序，人只负责触发、校准和最终判断。"><meta name="author" content="qiyuey"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="Synapse：一个 AI-native 的个人 Thinking OS | Synapse"><meta property="og:description" content="Synapse 不是笔记工具，而是一个 AI-native 的 Thinking OS——让 AI 承担从信息到判断的全部中间工序，人只负责触发、校准和最终判断。"><meta property="og:url" content="https://qiyuey.top/notes/synapse-thinking-os/"><meta property="og:image" content="https://qiyuey.top/og.png"><!-- Article Published/Modified time --><meta property="article:published_time" content="2026-03-09T00:00:00.000Z"><meta property="article:modified_time" content="2026-03-09T00:00:00.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://qiyuey.top/notes/synapse-thinking-os/"><meta property="twitter:title" content="Synapse：一个 AI-native 的个人 Thinking OS | Synapse"><meta property="twitter:description" content="Synapse 不是笔记工具，而是一个 AI-native 的 Thinking OS——让 AI 承担从信息到判断的全部中间工序，人只负责触发、校准和最终判断。"><meta property="twitter:image" content="https://qiyuey.top/og.png"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Synapse：一个 AI-native 的个人 Thinking OS | Synapse","image":"https://qiyuey.top/og.png","datePublished":"2026-03-09T00:00:00.000Z","dateModified":"2026-03-09T00:00:00.000Z","author":[{"@type":"Person","name":"qiyuey","url":"https://github.com/qiyuey"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="Synapse" href="https://qiyuey.top/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js"></script><!-- Minimal inline script to prevent FOUC - sets theme immediately --><script>
+      (function () {
+        const initialColorScheme = ""; // "light" | "dark"
+        const currentTheme = localStorage.getItem("theme");
+
+        function getPreferTheme() {
+          if (currentTheme) return currentTheme;
+          if (initialColorScheme) return initialColorScheme;
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+
+        const themeValue = getPreferTheme();
+
+        // Set theme immediately to prevent flash
+        document.firstElementChild?.setAttribute("data-theme", themeValue);
+
+        // Export minimal API for external script
+        window.theme = {
+          themeValue: themeValue,
+          getTheme: () => window.theme.themeValue,
+          setTheme: val => {
+            window.theme.themeValue = val;
+          },
+        };
+      })();
+    </script><link rel="stylesheet" href="/_astro/about.DtWRZln6.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+:where([data-astro-image]){object-fit:var(--fit);object-position:var(--pos);height:auto}:where([data-astro-image=full-width]){width:100%}:where([data-astro-image=constrained]){max-width:100%}
+</style><style>[data-astro-transition-scope="astro-pu2sknsl-1"] { view-transition-name: synapse\FF1A\4E00\4E2A-ai-native-\7684\4E2A\4EBA-thinking-os; }@layer astro { ::view-transition-old(synapse\FF1A\4E00\4E2A-ai-native-\7684\4E2A\4EBA-thinking-os) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(synapse\FF1A\4E00\4E2A-ai-native-\7684\4E2A\4EBA-thinking-os) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(synapse\FF1A\4E00\4E2A-ai-native-\7684\4E2A\4EBA-thinking-os) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(synapse\FF1A\4E00\4E2A-ai-native-\7684\4E2A\4EBA-thinking-os) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-pu2sknsl-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-pu2sknsl-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-pu2sknsl-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-pu2sknsl-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-pu2sknsl-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-pu2sknsl-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-pu2sknsl-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-pu2sknsl-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: ai; }@layer astro { ::view-transition-old(ai) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(ai) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(ai) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(ai) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: thinking; }@layer astro { ::view-transition-old(thinking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(thinking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(thinking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(thinking) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-4"] { view-transition-name: cursor; }@layer astro { ::view-transition-old(cursor) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(cursor) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(cursor) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(cursor) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-5"] { view-transition-name: workflow; }@layer astro { ::view-transition-old(workflow) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(workflow) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(workflow) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(workflow) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body>  <a id="skip-to-content" href="#main-content" class="absolute start-16 -top-full z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <header class="app-layout flex flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="py-4 sm:py-6 border-b border-border relative w-full bg-background flex items-baseline justify-between sm:items-center"> <a href="/" class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"> Synapse </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ms-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/captures">
+Captures
+</a> </li> <li class="col-span-2"> <a href="/notes" class="active-nav">
+Notes
+</a> </li> <li class="col-span-2"> <a href="/journals">
+Journals
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/archives" title="Archives" aria-label="archives" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex justify-center p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" title="Search" aria-label="search" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="app-layout flex items-center justify-start"><a id="back-button" href="/" class="group inline-flex items-center gap-1 hover:text-accent focus-outline -ms-2 mt-8 mb-2 hover:text-foreground/75"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span> </a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <nav id="toc" aria-label="目录" class="fixed top-24 right-[max(1rem,calc((100vw-var(--max-app-width,768px))/2-14rem))] z-20 hidden w-52 xl:block"><p class="mb-2 text-xs font-semibold uppercase tracking-wider text-foreground/40">
+目录
+</p><ul class="space-y-1 border-s border-border ps-3"><li><a href="#synapse-是什么" data-toc-slug="synapse-是什么" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent">Synapse 是什么</a></li><li><a href="#问题不在记录在于思考的体力活太重" data-toc-slug="问题不在记录在于思考的体力活太重" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent">问题不在记录，在于思考的体力活太重</a></li><li><a href="#三层流水线从原料到认知的转化路径" data-toc-slug="三层流水线从原料到认知的转化路径" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent">三层流水线：从原料到认知的转化路径</a></li><li><a href="#用-agent-skills-把流程固化为可复用能力" data-toc-slug="用-agent-skills-把流程固化为可复用能力" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent">用 Agent Skills 把流程固化为可复用能力</a></li><li><a href="#四层治理让-ai-像团队成员一样协作" data-toc-slug="四层治理让-ai-像团队成员一样协作" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent">四层治理：让 AI 像团队成员一样协作</a></li><li><a href="#每个人的-synapse-都不一样" data-toc-slug="每个人的-synapse-都不一样" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent">每个人的 Synapse 都不一样</a></li><li><a href="#技术选型为什么是-git--markdown--astro" data-toc-slug="技术选型为什么是-git--markdown--astro" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent">技术选型：为什么是 Git + Markdown + Astro</a></li><li><a href="#实际运转效果" data-toc-slug="实际运转效果" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent">实际运转效果</a></li><li><a href="#这不是给所有人的方案" data-toc-slug="这不是给所有人的方案" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent">这不是给所有人的方案</a></li></ul></nav><script type="module">function c(){const o=document.querySelectorAll(".toc-link");if(o.length===0)return;const a=Array.from(o).map(t=>t.dataset.tocSlug).map(t=>document.getElementById(t)).filter(Boolean);let n="";const r=new IntersectionObserver(t=>{for(const e of t)e.isIntersecting&&(n=e.target.id);o.forEach(e=>{const s=e.dataset.tocSlug===n;e.classList.toggle("text-accent",s),e.classList.toggle("font-medium",s),e.classList.toggle("text-foreground/50",!s)})},{rootMargin:"-10% 0px -80% 0px",threshold:0});return a.forEach(t=>r.observe(t)),()=>r.disconnect()}c();document.addEventListener("astro:after-swap",c);</script> <main id="main-content" class="app-layout pb-12" data-pagefind-body> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-pu2sknsl-1"> Synapse：一个 AI-native 的个人 Thinking OS </h1> <div class="my-2 flex items-center gap-2"> <div class="flex items-center gap-x-2 opacity-80"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-5.5"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg>  <time class="text-sm sm:text-base" datetime="2026-03-09T00:00:00.000Z">9 Mar, 2026</time> </div> <span aria-hidden="true" class="max-sm:hidden hidden">|</span>  </div> <article id="article" class="app-prose mt-8 w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"> <blockquote>
+<p>核心判断：思考的瓶颈从来不是”想不到”，而是”从信息到判断”的过程太重了。AI 的介入不应该停留在检索和问答，而应该承担从输入到成型判断之间的全部中间工序。</p>
+</blockquote>
+<h2 id="synapse-是什么">Synapse 是什么</h2>
+<p>Synapse 是一个个人 Thinking OS。它的形态不是一个 App，而是一个 Git 仓库——所有内容都是 Markdown 文件，用 Cursor（一个深度集成 AI Agent 的代码编辑器）打开和编辑。需要发布的内容通过 Astro 直接渲染成静态博客，写作和发布共用同一份文件。没有数据库、没有云端锁定，所有东西都是本地的纯文本文件加 Git 版本控制。</p>
+<p>仓库里除了内容文件，还有两类关键配置：<strong>Skill</strong> 和 <strong>Rule</strong>。Skill 是写给 AI 的工作流程——“拿到一个 URL 该怎么处理""写 note 的步骤和产出标准是什么”，相当于给 AI 发了一份岗位说明书。Rule 是编辑时自动生效的约束——“术语要前后统一""不要用某种句式”，相当于随时在旁边盯着的风格指南。两者配合，让 AI 不是每次从零开始的陌生人，而是记住了所有偏好和标准的长期协作者。</p>
+<p>在这个基础上，日常使用只有三个动作：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>场景</th><th>触发的 Skill</th><th>得到什么</th></tr></thead><tbody><tr><td>读到一篇好文章</td><td><code>capture</code> — 把 URL 扔给 AI</td><td>一篇提炼了核心论证和关键事例的 capture，存入知识库，随时可查可引用</td></tr><tr><td>脑子里有个判断想理清楚</td><td><code>note</code> — 带着问题或初步观点和 AI 对话</td><td>一篇结构清晰、论证完整的 note，可直接分享或发布到博客</td></tr><tr><td>想复盘一段时间的认知变化</td><td><code>cognitive</code> — 把近期素材和思考交给 AI</td><td>一条可独立阅读的 journal 记录，沉淀判断的演变轨迹</td></tr></tbody></table>
+<p>三个动作背后是同一套机制：<strong>AI 按照积累的规则和技能执行中间工序，产出质量随使用持续提高。</strong> 规则体系记住了所有约定（写作风格、术语偏好、结构习惯），自进化机制不断从实际使用中提取新模式。流水线结构、产出标准全部由使用者定义——两个人的 Synapse 用三个月就会长成完全不同的形态。</p>
+<p>下面展开讲每一层的设计和背后的判断。</p>
+<h2 id="问题不在记录在于思考的体力活太重">问题不在记录，在于思考的体力活太重</h2>
+<p>个人知识管理领域不缺工具。从 Notion、Obsidian 到 Logseq，每一代产品都在解决”怎么更方便地记录和组织信息”。但它们解决的都是存储和检索问题——真正卡住人的不是这些。</p>
+<p>一篇好文章读完，你知道它有价值。但从”读完了”到”形成自己的判断”之间，隔着一道巨大的体力活：提炼要点、组织结构、关联已有认知、写成可复用的文字。这才是思考过程中最重的工序，也是传统工具完全帮不上忙的环节。结果就是大多数人的收藏夹越来越厚，但真正内化为判断的内容越来越少。</p>
+<p>Synapse 的出发点很简单：<strong>既然 AI 已经能高质量地完成信息转化，为什么不让它承担”从输入到判断”这条路径上最重的体力活？</strong></p>
+<h2 id="三层流水线从原料到认知的转化路径">三层流水线：从原料到认知的转化路径</h2>
+<p>Synapse 的核心架构是一条三层流水线。每一层解决一个不同层次的问题，人和 AI 的分工也不同。</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="plaintext"><code><span class="line"><span>[大量资讯涌入]</span></span>
+<span class="line"><span>─────────────────────────────────────────────────</span></span>
+<span class="line"><span>capture 层 │ 人：发现值得留的内容，扔进来</span></span>
+<span class="line"><span>           │ AI：自动提炼成可公开阅读的结构化文档</span></span>
+<span class="line"><span>─────────────────────────────────────────────────</span></span>
+<span class="line"><span>note 层    │ 人：基于自己的想法/问题触发</span></span>
+<span class="line"><span>           │ AI：围绕判断组织论证、快速产出 first draft、持续迭代</span></span>
+<span class="line"><span>─────────────────────────────────────────────────</span></span>
+<span class="line"><span>journal 层 │ 人：触发认知复盘</span></span>
+<span class="line"><span>           │ AI：提炼阶段性洞察，写入可独立阅读的记录</span></span></code></pre>
+<p>三层不是文件夹分类，而是思考的三个阶段：</p>
+<p><strong>capture 是原料层。</strong> 看到一篇好文章、一段有启发的对话，贴个 URL 或者粘一段文字，AI 自动抓取正文、提炼核心论证链条和关键事例，整理成一篇脱离原始上下文也能独立阅读的文档。这不是全文复制，也不是只列 bullet——是保留了论证过程和”aha moment”的结构化叙述。</p>
+<p><strong>note 是认知层。</strong> capture 存的是别人的判断，note 存的是自己的判断。带着一个问题或一个初步判断过来，AI 负责组织论证、补充盲点、快速产出 first draft，再在文件上直接反馈、持续迭代。capture 可以被 note 引用，但 note 的主体始终是自己的立场。</p>
+<p><strong>journal 是演化层。</strong> 记录认知随时间的变化轨迹——上一次想的是什么，这一次有什么新的判断，变化的原因是什么。回头审视某个判断的形成过程时，journal 能把每一步怎么走过来的讲清楚。</p>
+<p>这条流水线的关键设计决策是：<strong>AI 负责所有中间工序，人只在两端发力——输入端决定”转化什么”，输出端判断”转化得对不对”。</strong></p>
+<h2 id="用-agent-skills-把流程固化为可复用能力">用 Agent Skills 把流程固化为可复用能力</h2>
+<p>三层流水线不是靠人记住流程来运转的。每一层的转化逻辑被编码成了 Cursor Agent Skill——一份详细的工作指令，告诉 AI 在每个阶段该做什么、怎么做、产出标准是什么。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Skill</th><th>层级</th><th>做什么</th></tr></thead><tbody><tr><td><code>capture</code></td><td>原料层</td><td>抓取 URL 正文 → 提炼论证链和关键事例 → 写入 <code>captures/</code></td></tr><tr><td><code>note</code></td><td>认知层</td><td>围绕用户的判断组织论证 → 产出 first draft → 持续迭代</td></tr><tr><td><code>cognitive</code></td><td>演化层</td><td>提炼阶段性认知变化 → 追加到 <code>journals/</code></td></tr><tr><td><code>evolve</code></td><td>自进化</td><td>从工作会话中提取可复用模式 → 固化到规范体系</td></tr></tbody></table>
+<p>最后一个 skill——<code>evolve</code>——让 Synapse 具备了自进化能力：使用过程中发现的模式和偏好，不是停留在脑子里，而是被提取出来、写入规范体系，下次自动生效。这是后面”个性化”章节的基础机制。</p>
+<h2 id="四层治理让-ai-像团队成员一样协作">四层治理：让 AI 像团队成员一样协作</h2>
+<p>AI 不是一次性的问答工具。在 Synapse 里，AI 是长期协作者。但长期协作需要共识——什么是对的，什么是不允许的，遇到特定场景该怎么处理。</p>
+<p>这些共识被组织成四层结构：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>层级</th><th>载体</th><th>回答什么问题</th></tr></thead><tbody><tr><td>全局约定</td><td><code>AGENTS.md</code></td><td>什么是对的：目录结构、命名规则、frontmatter 规范</td></tr><tr><td>目录约定</td><td><code>{dir}/AGENTS.md</code></td><td>这个目录有什么特殊要求</td></tr><tr><td>编辑规则</td><td><code>.cursor/rules/*.mdc</code></td><td>编辑时该注意什么：写作风格、术语一致性</td></tr><tr><td>工作流</td><td><code>.cursor/skills/*/SKILL.md</code></td><td>完成一件事的完整步骤</td></tr></tbody></table>
+<p>这套分层不是过度设计，而是踩过坑之后的实用选择。AI 不怕规则多，怕的是规则散——同一件事在三个地方有三种说法。分层治理让每条规范有唯一的归属，约定、规则和流程各归其位，不会互相打架。</p>
+<h2 id="每个人的-synapse-都不一样">每个人的 Synapse 都不一样</h2>
+<p>大多数工具提供的是固定模板：相同的字段、相同的工作流、相同的 AI prompt。Synapse 完全相反——<strong>整个系统的行为逻辑都是使用者自己定义的，而且会随着使用持续演化。</strong></p>
+<p>个性化发生在三个维度：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>维度</th><th>含义</th><th>举例</th></tr></thead><tbody><tr><td>流程</td><td>流水线结构可变，加层、改层、调整转化逻辑</td><td>增加”待深入研究”队列，把 journal 拆成多个独立主题</td></tr><tr><td>标准</td><td>产出质量的定义由使用者决定，写入规则和 Skill</td><td>偏好克制分析文 vs. 冲击力观点文；capture 保留细节 vs. 只留论证链</td></tr><tr><td>演化</td><td><code>evolve</code> skill 从实际使用中持续提取模式并固化</td><td>纠正了一个术语 → 下次自动遵守；调整了一种结构 → 成为默认行为</td></tr></tbody></table>
+<p>第三个维度是关键。传统工具的个性化是一次性配置；Synapse 的个性化是持续生长的——每一次使用中的反馈都会沉淀为系统的默认行为，两个人用同一套初始配置，三个月后会长成完全不同的形态。</p>
+<p>这带来一个重要的结果：<strong>对 AI 协作的投入是可积累的。</strong> 在通用 AI 工具里，每次对话都是从零开始；在 Synapse 里，每次协作都在上一次的基础上进行。教过的东西不会丢失，建立的标准持续生效，Thinking OS 越来越像自己思维方式的延伸。</p>
+<h2 id="技术选型为什么是-git--markdown--astro">技术选型：为什么是 Git + Markdown + Astro</h2>
+<p>Synapse 的技术栈刻意选择了”笨”方案：</p>
+<ul>
+<li><strong>Git 是唯一 Source of Truth。</strong> 所有内容版本可追溯、可回滚、可离线工作。不依赖任何云端数据库或 SaaS 服务的存续。</li>
+<li><strong>Markdown 是唯一内容格式。</strong> 零迁移成本，任何编辑器都能打开，任何 AI 都能读写。不需要在”导出”功能上押注。</li>
+<li><strong>Astro 负责发布。</strong> 直接把 <code>notes/</code> 和 <code>captures/</code> 渲染成静态博客。写作和发布共用同一份文件，没有”从笔记导出到博客”的额外步骤。</li>
+<li><strong>Cursor 是核心编辑器。</strong> 不是因为它是最好的 Markdown 编辑器，而是因为它是目前 AI Agent 集成最深的编辑器。Agent Skills 让每次交互都能按照积累的规范执行，而不是每次都从头教。</li>
+</ul>
+<p>这组选型背后的统一逻辑是：<strong>内容的寿命比任何工具都长。</strong> Git + Markdown 确保即使 Cursor 不存在了、Astro 不维护了，内容本身零损耗地迁移到下一代工具。</p>
+<h2 id="实际运转效果">实际运转效果</h2>
+<p>运转一段时间后，几个观察：</p>
+<p><strong>capture 的实际使用率显著高于传统收藏。</strong> AI 在入库时就完成了结构化整理，capture 不是”存了以后看”，而是”存的时候就已经读透了”。回头查阅时，一篇 capture 就能快速唤起核心信息。</p>
+<p><strong>note 的产出速度和深度同时提升。</strong> 以前写一篇有判断力的长文需要半天到一天，现在从触发到满意的 first draft 通常在一轮对话内完成，后续迭代也是在文件上直接反馈，不需要反复描述上下文。</p>
+<p><strong>自进化带来的复利效应开始显现。</strong> 写作风格规范、术语一致性要求、正文结构偏好——这些早期靠手工纠正的问题，固化成规则后就不再重复出现。系统的默认产出质量在持续提高。</p>
+<h2 id="这不是给所有人的方案">这不是给所有人的方案</h2>
+<p>Synapse 有一个隐含假设：使用者已经在持续思考、持续形成判断，只是从想法到成文之间的工序太重。如果输入端本身是空的——没有在持续阅读、持续追问、持续形成观点——再好的流水线也无米可炊。</p>
+<p>另一个限制是工具链的门槛。Git、Markdown、Cursor、命令行——这不是大众消费品的技术栈。但对于本身就在这些工具里工作的人来说，零额外学习成本，反而比专门的笔记应用更顺手。</p>
+<p>但这些限制反过来也是优势：正因为整个系统是透明的、可编程的，才能真正把它改造成自己的形状，而不是在别人设计好的框框里做选择题。</p>
+<blockquote>
+<p>Thinking OS 的终极价值不是记住更多，而是更快地形成判断、更系统地迭代判断。AI 让思考过程中的体力活趋近于零，个性化的规则和流程让每一次产出都更接近自己的标准。剩下的，全是判断力本身——这恰恰是唯一值得投入的东西。</p>
+</blockquote> </article> <hr class="my-8 border-dashed">  <ul class="mt-4 mb-8 flex flex-wrap gap-4 sm:my-8"> <li> <a href="/tags/ai/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> ai </a> </li><li> <a href="/tags/thinking/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> thinking </a> </li><li> <a href="/tags/cursor/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-4"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> cursor </a> </li><li> <a href="/tags/workflow/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-5"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> workflow </a> </li> </ul> <div id="btt-btn-container" class="fixed end-4 bottom-8 z-50 md:sticky md:end-auto md:float-end md:me-1 translate-y-14 opacity-0 transition duration-500"> <button data-button="back-to-top" class="group relative bg-background px-2 py-1 size-14 rounded-full shadow-xl md:h-8 md:w-fit md:rounded-md md:shadow-none md:focus-visible:rounded-none md:bg-background/35 md:bg-clip-padding md:backdrop-blur-lg"> <span id="progress-indicator" class="absolute inset-0 -z-10 block size-14 scale-110 rounded-full bg-transparent md:hidden md:h-8 md:rounded-md"></span> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90 md:hidden"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span class="sr-only text-sm group-hover:text-accent md:not-sr-only"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 5l0 14" /><path d="M16 9l-4 -4" /><path d="M8 9l4 -4" /></svg>
+Back To Top
+</span> </button> </div> <script data-astro-rerun>
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    const rootElement = document.documentElement;
+    const btnContainer = document.querySelector("#btt-btn-container");
+    const backToTopBtn = document.querySelector("[data-button='back-to-top']");
+    const progressIndicator = document.querySelector("#progress-indicator");
+
+    if (!rootElement || !btnContainer || !backToTopBtn || !progressIndicator)
+      return;
+
+    // Attach click event handler for back-to-top button
+    backToTopBtn.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+
+    // Handle button visibility according to scroll position
+    let lastVisible = null;
+    function handleScroll() {
+      const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight;
+      const scrollTop = rootElement.scrollTop;
+      const scrollPercent = Math.floor((scrollTop / scrollTotal) * 100);
+
+      progressIndicator.style.setProperty(
+        "background-image",
+        `conic-gradient(var(--accent), var(--accent) ${scrollPercent}%, transparent ${scrollPercent}%)`
+      );
+
+      const isVisible = scrollTop / scrollTotal > 0.3;
+
+      if (isVisible !== lastVisible) {
+        btnContainer.classList.toggle("opacity-100", isVisible);
+        btnContainer.classList.toggle("translate-y-0", isVisible);
+        btnContainer.classList.toggle("opacity-0", !isVisible);
+        btnContainer.classList.toggle("translate-y-14", !isVisible);
+        lastVisible = isVisible;
+      }
+    }
+
+    let ticking = false;
+    document.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }
+  backToTop();
+</script>  <hr class="my-6 border-dashed"> <!-- Related Posts --> <div data-pagefind-ignore class="mb-6"> <h2 class="mb-3 text-lg font-semibold">相关内容</h2> <ul class="space-y-2"> <li> <a href="/notes/child-voice-companion-hardware-plan" class="group flex items-start gap-2 hover:opacity-75"> <span class="mt-1 shrink-0 text-xs text-muted-foreground opacity-60"> note </span> <span class="text-sm text-accent/85 underline-offset-4 group-hover:underline"> 儿童语音陪伴硬件项目规划（无屏版） </span> </a> </li><li> <a href="/notes/ai-era-product-engineering-team" class="group flex items-start gap-2 hover:opacity-75"> <span class="mt-1 shrink-0 text-xs text-muted-foreground opacity-60"> note </span> <span class="text-sm text-accent/85 underline-offset-4 group-hover:underline"> AI 时代的产研团队重构 </span> </a> </li><li> <a href="/captures/palantir-ai-services-wave-lessons-from-8vc" class="group flex items-start gap-2 hover:opacity-75"> <span class="mt-1 shrink-0 text-xs text-muted-foreground opacity-60"> capture </span> <span class="text-sm text-accent/85 underline-offset-4 group-hover:underline"> AI Services 浪潮：从 Palantir 经验提炼的四条建设原则 </span> </a> </li><li> <a href="/captures/palantir-ontology-oriented-software-development" class="group flex items-start gap-2 hover:opacity-75"> <span class="mt-1 shrink-0 text-xs text-muted-foreground opacity-60"> capture </span> <span class="text-sm text-accent/85 underline-offset-4 group-hover:underline"> Palantir 的 Ontology-Oriented 开发范式：为什么企业 AI 的瓶颈不在模型，在本体 </span> </a> </li> </ul> </div> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/notes/ai-era-product-engineering-team" class="flex w-full gap-1 hover:opacity-75"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <div> <span>上一篇</span> <div class="text-sm text-accent/85">AI 时代的产研团队重构</div> </div> </a> <a href="/captures/palantir-ai-services-wave-lessons-from-8vc" class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"> <div> <span>下一篇</span> <div class="text-sm text-accent/85">AI Services 浪潮：从 Palantir 经验提炼的四条建设原则</div> </div> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <footer class="app-layout mt-auto"> <div class="py-6 sm:py-4 border-t border-border flex flex-col items-center justify-between sm:flex-row-reverse"> <div class="flex flex-wrap items-center gap-1"> <a href="https://github.com/qiyuey" title="Synapse on GitHub" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only">Synapse on GitHub</span>  </a><a href="https://x.com/qiyueyc" title="Synapse on X" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Synapse on X</span>  </a><a href="mailto:yuchuanabcd@gmail.com" title="发邮件给 Synapse" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">发邮件给 Synapse</span>  </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2026</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  <!-- Load full theme logic --> <script type="module">const d="theme",r="light",m="dark";function i(){const e=localStorage.getItem(d);return e||(window.matchMedia("(prefers-color-scheme: dark)").matches?m:r)}let t=window.theme?.themeValue??i();function c(){localStorage.setItem(d,t),o()}function o(){document.firstElementChild?.setAttribute("data-theme",t),document.querySelector("#theme-btn")?.setAttribute("aria-label",t);const e=document.body;if(e){const n=window.getComputedStyle(e).backgroundColor;document.querySelector("meta[name='theme-color']")?.setAttribute("content",n)}}window.theme?(window.theme.setPreference=c,window.theme.reflectPreference=o):window.theme={themeValue:t,setPreference:c,reflectPreference:o,getTheme:()=>t,setTheme:e=>{t=e}};o();function s(){o(),document.querySelector("#theme-btn")?.addEventListener("click",()=>{t=t===r?m:r,window.theme?.setTheme(t),c()})}s();document.addEventListener("astro:after-swap",s);document.addEventListener("astro:before-swap",e=>{const a=e,n=document.querySelector("meta[name='theme-color']")?.getAttribute("content");n&&a.newDocument.querySelector("meta[name='theme-color']")?.setAttribute("content",n)});window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",({matches:e})=>{t=e?m:r,window.theme?.setTheme(t),c()});</script> </body> </html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ms-2 no-underline opacity-75 md:opacity-0 md:group-hover:opacity-100 md:focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      // Check if --file-name-offset custom property exists
+      const computedStyle = getComputedStyle(codeBlock);
+      const hasFileNameOffset =
+        computedStyle.getPropertyValue("--file-name-offset").trim() !== "";
+
+      // Determine the top positioning class
+      const topClass = hasFileNameOffset
+        ? "top-(--file-name-offset)"
+        : "-top-3";
+
+      const copyButton = document.createElement("button");
+      copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>
