@@ -1,0 +1,861 @@
+<!DOCTYPE html><html dir="ltr" lang="zh-CN" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://qiyuey.top/books/investing-for-programmers/"><meta name="generator" content="Astro v6.0.5"><!-- System font stack - no remote loading needed --><!-- General Meta Tags --><title>Investing for Programmers | Synapse</title><meta name="title" content="Investing for Programmers | Synapse"><meta name="description" content="程序员如何利用数据分析和编程技能做出更好的投资决策"><meta name="author" content="qiyuey"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:title" content="Investing for Programmers | Synapse"><meta property="og:description" content="程序员如何利用数据分析和编程技能做出更好的投资决策"><meta property="og:url" content="https://qiyuey.top/books/investing-for-programmers/"><meta property="og:image" content="https://qiyuey.top/og.png"><!-- Article Published/Modified time --><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://qiyuey.top/books/investing-for-programmers/"><meta property="twitter:title" content="Investing for Programmers | Synapse"><meta property="twitter:description" content="程序员如何利用数据分析和编程技能做出更好的投资决策"><meta property="twitter:image" content="https://qiyuey.top/og.png"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Investing for Programmers | Synapse","image":"https://qiyuey.top/og.png","datePublished":"undefined","author":[{"@type":"Person","name":"qiyuey","url":"https://github.com/qiyuey"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="Synapse" href="https://qiyuey.top/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DmQZLfuR.js"></script><!-- Minimal inline script to prevent FOUC - sets theme immediately --><script>
+      (function () {
+        const initialColorScheme = ""; // "light" | "dark"
+        const currentTheme = localStorage.getItem("theme");
+
+        function getPreferTheme() {
+          if (currentTheme) return currentTheme;
+          if (initialColorScheme) return initialColorScheme;
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+
+        const themeValue = getPreferTheme();
+
+        // Set theme immediately to prevent flash
+        document.firstElementChild?.setAttribute("data-theme", themeValue);
+
+        // Export minimal API for external script
+        window.theme = {
+          themeValue: themeValue,
+          getTheme: () => window.theme.themeValue,
+          setTheme: val => {
+            window.theme.themeValue = val;
+          },
+        };
+      })();
+    </script><link rel="stylesheet" href="/_astro/Footer.lz04e2tk.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+:where([data-astro-image]){height:auto}:where([data-astro-image=full-width]){width:100%}:where([data-astro-image=constrained]){max-width:100%}[data-astro-image-fit=fill]{object-fit:fill}[data-astro-image-fit=contain]{object-fit:contain}[data-astro-image-fit=cover]{object-fit:cover}[data-astro-image-fit=scale-down]{object-fit:scale-down}
+</style><style>[data-astro-transition-scope="astro-azskp43i-1"] { view-transition-name: investing-for-programmers; }@layer astro { ::view-transition-old(investing-for-programmers) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(investing-for-programmers) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(investing-for-programmers) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(investing-for-programmers) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-azskp43i-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-azskp43i-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-azskp43i-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-azskp43i-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-azskp43i-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-azskp43i-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-azskp43i-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-azskp43i-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body>  <a id="skip-to-content" href="#main-content" class="absolute start-16 -top-full z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <header class="app-layout flex flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="py-4 sm:py-6 border-b border-border relative w-full bg-background flex items-baseline justify-between sm:items-center"> <a href="/" class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"> Synapse </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ms-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/captures">
+Captures
+</a> </li> <li class="col-span-2"> <a href="/notes">
+Notes
+</a> </li> <li class="col-span-2"> <a href="/journals">
+Journals
+</a> </li> <li class="col-span-2"> <a href="/books" class="active-nav">
+Books
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/archives" title="Archives" aria-label="archives" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex justify-center p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" title="Search" aria-label="search" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="app-layout flex items-center justify-start"><a id="back-button" href="/" class="group inline-flex items-center gap-1 hover:text-accent focus-outline -ms-2 mt-8 mb-2 hover:text-foreground/75"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span> </a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <nav id="toc" aria-label="目录" class="fixed top-24 right-[max(1rem,calc((100vw-var(--max-app-width,768px))/2-14rem))] z-20 hidden w-52 xl:block"><p class="mb-2 text-xs font-semibold uppercase tracking-wider text-foreground/40">
+目录
+</p><ul class="space-y-1 border-s border-border ps-3"><li><a href="#第-1-章--分析型投资者the-analytical-investor" data-toc-slug="第-1-章--分析型投资者the-analytical-investor" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent">第 1 章 — 分析型投资者（The Analytical Investor）</a></li><li><a href="#11-投资旅程your-investment-journey" data-toc-slug="11-投资旅程your-investment-journey" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent ps-3">1.1 投资旅程（Your Investment Journey）</a></li><li><a href="#12-资产assets" data-toc-slug="12-资产assets" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent ps-3">1.2 资产（Assets）</a></li><li><a href="#13-投资方法investment-approaches" data-toc-slug="13-投资方法investment-approaches" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent ps-3">1.3 投资方法（Investment Approaches）</a></li><li><a href="#14-风险与回报risks-and-rewards" data-toc-slug="14-风险与回报risks-and-rewards" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent ps-3">1.4 风险与回报（Risks and Rewards）</a></li><li><a href="#15-程序员的不公平优势a-programmers-unfair-advantage" data-toc-slug="15-程序员的不公平优势a-programmers-unfair-advantage" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent ps-3">1.5 程序员的不公平优势（A Programmer’s Unfair Advantage）</a></li><li><a href="#第-2-章--投资基础investment-essentials" data-toc-slug="第-2-章--投资基础investment-essentials" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent">第 2 章 — 投资基础（Investment Essentials）</a></li><li><a href="#21-会计基础accounting-in-a-nutshell" data-toc-slug="21-会计基础accounting-in-a-nutshell" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent ps-3">2.1 会计基础（Accounting in a Nutshell）</a></li><li><a href="#22-行业分类industry-classification" data-toc-slug="22-行业分类industry-classification" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent ps-3">2.2 行业分类（Industry Classification）</a></li><li><a href="#23-市值capitalization" data-toc-slug="23-市值capitalization" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent ps-3">2.3 市值（Capitalization）</a></li><li><a href="#24-指标与比率metrics-and-ratios" data-toc-slug="24-指标与比率metrics-and-ratios" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent ps-3">2.4 指标与比率（Metrics and Ratios）</a></li><li><a href="#25-外部评估external-assessments" data-toc-slug="25-外部评估external-assessments" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent ps-3">2.5 外部评估（External Assessments）</a></li><li><a href="#第-3-章--数据收集collecting-data" data-toc-slug="第-3-章--数据收集collecting-data" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent">第 3 章 — 数据收集（Collecting Data）</a></li><li><a href="#31-金融数据分类financial-data" data-toc-slug="31-金融数据分类financial-data" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent ps-3">3.1 金融数据分类（Financial Data）</a></li><li><a href="#32-金融分析平台financial-analysis-platforms" data-toc-slug="32-金融分析平台financial-analysis-platforms" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent ps-3">3.2 金融分析平台（Financial Analysis Platforms）</a></li><li><a href="#33-数据科学笔记本data-science-notebooks" data-toc-slug="33-数据科学笔记本data-science-notebooks" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent ps-3">3.3 数据科学笔记本（Data Science Notebooks）</a></li><li><a href="#34-yfinance" data-toc-slug="34-yfinance" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent ps-3">3.4 yfinance</a></li><li><a href="#35-商业库commercial-libraries" data-toc-slug="35-商业库commercial-libraries" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent ps-3">3.5 商业库（Commercial Libraries）</a></li><li><a href="#36-库的选择标准" data-toc-slug="36-库的选择标准" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent ps-3">3.6 库的选择标准</a></li></ul></nav><script type="module">function c(){const o=document.querySelectorAll(".toc-link");if(o.length===0)return;const a=Array.from(o).map(t=>t.dataset.tocSlug).map(t=>document.getElementById(t)).filter(Boolean);let n="";const r=new IntersectionObserver(t=>{for(const e of t)e.isIntersecting&&(n=e.target.id);o.forEach(e=>{const s=e.dataset.tocSlug===n;e.classList.toggle("text-accent",s),e.classList.toggle("font-medium",s),e.classList.toggle("text-foreground/50",!s)})},{rootMargin:"-10% 0px -80% 0px",threshold:0});return a.forEach(t=>r.observe(t)),()=>r.disconnect()}c();document.addEventListener("astro:after-swap",c);</script> <main id="main-content" class="app-layout pb-12"> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-azskp43i-1"> Investing for Programmers </h1> <p class="mt-2 text-foreground/70">程序员如何利用数据分析和编程技能做出更好的投资决策</p> <article id="article" class="app-prose mt-8 w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"> <h2 id="第-1-章--分析型投资者the-analytical-investor">第 1 章 — 分析型投资者（The Analytical Investor）</h2>
+<h3 id="11-投资旅程your-investment-journey">1.1 投资旅程（Your Investment Journey）</h3>
+<ul>
+<li>程序员追求财务独立，起点往往不是贪心，而是职场太苦——微管理的老板、甩锅的客户、暗中改你代码出事还怪你的人。正规教育从不教这些。</li>
+<li>换工作是权宜之计，创业是用 80 小时换更低薪水和渺茫的成功率。常规出路都有明显天花板。</li>
+<li>替代路径：通过被动收入逐步建立对工作的独立性。自由是渐变过程——当被动收入开始覆盖部分必要开支时，自由就开始了。</li>
+<li><strong>Q</strong> “Knowing that you can leave a high-paying, soul-crushing job for a more fulfilling one, even if it pays less, is a powerful relief.” / 知道自己可以离开那份高薪但消耗灵魂的工作，去做更有意义的事，哪怕收入更低——这本身就是一种巨大的解脱。</li>
+<li>全书定位是分步指南，强调理性和耐心，不承诺奇迹。警惕”24 小时暴富”。</li>
+</ul>
+<h3 id="12-资产assets">1.2 资产（Assets）</h3>
+<p>资产变现的两条路径：<strong>资本增值</strong>（低买高卖）和<strong>被动收入</strong>（利息、租金、分红等定期收付）。</p>
+<p>投资前必须回答的三个底层参数：</p>
+<ol>
+<li><strong>风险承受力</strong>（Risk tolerance）——能承受多大潜在损失而不焦虑</li>
+<li><strong>财务目标</strong>（Financial goals）——希望在多长时间内赚多少</li>
+<li><strong>时间投入</strong>（Time commitment）——愿意花多少时间管理投资；如果盯盘的时间侵蚀了生活，说明策略需要调整</li>
+</ol>
+<h4 id="股票stocks">股票（Stocks）</h4>
+<ul>
+<li>买股票 = 买公司所有权（equity）。股价由供需驱动，但也受全球政治与经济新闻影响</li>
+<li><strong>术语链</strong>：shares（可数的股份）→ stock（公司总权益）→ portfolio（持有的所有证券集合）→ unrealized gain/loss（未卖出前的浮盈/浮亏）→ realized gain/loss（卖出后兑现）</li>
+<li><strong>Dividend（分红）</strong>：公司按每股支付的收益。Dividend yield = 年分红 / 股价。苹果 yield ≈ 0.49%，远低于 10 年期美债 ≈ 4.3%——纯冲分红买苹果不划算</li>
+</ul>
+<h4 id="债券bonds">债券（Bonds）</h4>
+<ul>
+<li>债券 = IOU（借据）。买债券 = 借钱给发行方（政府或公司），换取定期利息（coupon）+ 到期归还本金（principal）</li>
+<li><strong>Credit risk</strong>：发行方违约风险，由 Moody’s / S&#x26;P 等评级机构评估</li>
+<li>风险越高 → yield 越高。到期前可在公开市场卖出，价格随市场波动</li>
+<li>美国国债被视为”无风险”基准，但严格来说是”极低风险”——理论上任何政府都可能违约</li>
+</ul>
+<h4 id="交易所交易基金etfs">交易所交易基金（ETFs）</h4>
+<ul>
+<li>一笔交易买入一篮子证券，天然分散风险</li>
+<li>多数 ETF 被动跟踪指数（如 S&#x26;P 500），算法自动 rebalance；少数为主动管理</li>
+<li>有年管理费（expense ratio），但远低于自己逐笔买入的交易费用总和</li>
+</ul>
+<h4 id="其他基金">其他基金</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>类型</th><th>特征</th></tr></thead><tbody><tr><td><strong>Mutual fund（共同基金）</strong></td><td>类似 ETF 但每天只交易一次，按收盘后的 NAV（净资产价值）定价</td></tr><tr><td><strong>Hedge fund（对冲基金）</strong></td><td>监管更少、门槛更高、策略更激进，仅向合格投资者（accredited investors）开放</td></tr></tbody></table>
+<h4 id="外汇forex">外汇（Forex）</h4>
+<ul>
+<li>交易货币对（如 EUR/USD）的汇率波动来获利</li>
+<li>分析经济指标和市场趋势，预判货币升值/贬值</li>
+</ul>
+<h4 id="加密货币crypto">加密货币（Crypto）</h4>
+<ul>
+<li>底层是 <strong>Blockchain</strong>（去中心化数字账本），应用层是 <strong>Cryptocurrency</strong>（基于区块链的数字资产）</li>
+<li>核心价值：无需第三方中介的点对点交易</li>
+<li><strong>Staking</strong>：通过参与交易验证获得奖励，是 crypto 的被动收入方式</li>
+</ul>
+<h4 id="衍生品derivatives">衍生品（Derivatives）</h4>
+<ul>
+<li>衍生品 = 价值来源于底层资产（股票、商品等）的合约</li>
+<li>最常用的衍生品是 <strong>Options（期权）</strong>：付一笔 premium（权利金）获得在到期日前以 strike price（行权价）买/卖资产的权利，但不是义务。程序员类比：premium = 买 API Key，获得 <code>buy()</code> 或 <code>sell()</code> 的调用权；到期没达到条件就让 key 过期，损失仅限于 premium
+<ul>
+<li><strong>Call option</strong>：买入的权利（看涨）</li>
+<li><strong>Put option</strong>：卖出的权利（看跌/保险）</li>
+</ul>
+</li>
+<li>也可以反过来 <strong>sell/write options</strong>：收取 premium 作为收入，但承担义务。卖 put 的极端风险：股价跌到零仍需按行权价买入</li>
+</ul>
+<h4 id="私募股权private-equity">私募股权（Private Equity）</h4>
+<ul>
+<li>投资未上市公司，流动性低但回报潜力最大</li>
+<li>两种参与方式：<strong>直接投资</strong>（通常 pre-seed / seed 阶段）或作为 <strong>LP（有限合伙人）</strong> 加入天使/VC 基金</li>
+</ul>
+<h4 id="其他资产">其他资产</h4>
+<ul>
+<li><strong>Commodities（大宗商品）</strong>：金、油、小麦等，价格受地缘政治、天气、全球经济影响，波动大</li>
+<li><strong>Real estate（房地产）</strong>：高度非流动性资产（illiquid），卖出慢、租客风险高</li>
+<li><strong>Fungible vs Non-fungible</strong>：可替代 vs 不可替代。证券是 fungible 的，因此门槛低、维护少、流动性好、可扩展——适合新手起步</li>
+</ul>
+<h4 id="选资产前的四个自问">选资产前的四个自问</h4>
+<ol>
+<li>过上满意生活需要多少钱？</li>
+<li>有多少闲钱可以投资？</li>
+<li>为了更高收益愿意承受多大风险？</li>
+<li>愿意在研究和管理投资上花多少时间？</li>
+</ol>
+<h3 id="13-投资方法investment-approaches">1.3 投资方法（Investment Approaches）</h3>
+<p>资产变现方法的三个分类：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>类别</th><th>特征</th></tr></thead><tbody><tr><td><strong>Gambling</strong></td><td>凭直觉或”宇宙信号”决策，受认知偏差驱动</td></tr><tr><td><strong>Investing</strong></td><td>长期视角，依赖分析和批判性思维，减少冲动决策</td></tr><tr><td><strong>Trading</strong></td><td>利用短期价格波动，频率更高、风险更大</td></tr></tbody></table>
+<h4 id="定量研究quantitative-research">定量研究（Quantitative Research）</h4>
+<ul>
+<li>核心思路：收集尽可能多的财务数据（revenue、profit margin、P/E ratio 等），跨公司比较这些”因子”</li>
+<li>财务数据高度标准化（会计准则），非财务数据也可量化后纳入</li>
+<li><strong>Technical analysis（技术分析）</strong>：通过价格和成交量的统计趋势识别模式、预测走势。工具包括 candlestick chart、各类 indicator</li>
+</ul>
+<h4 id="定性研究qualitative-research">定性研究（Qualitative Research）</h4>
+<ul>
+<li>关注数字背后的”为什么”：品牌实力、管理层质量、竞争对手风险</li>
+<li>定性数据可转化为定量数据（如对 earnings call 做 sentiment analysis 再比较评分）</li>
+<li><strong>GenAI</strong>：摘要大规模数据集、分析市场情绪、模拟压力测试场景</li>
+<li><strong>AI Agents</strong>：自主完成多步骤研究任务——采集数据、分析财报、评估新闻、生成报告</li>
+</ul>
+<h4 id="交易分类trading">交易分类（Trading）</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>风格</th><th>持仓周期</th><th>特征</th></tr></thead><tbody><tr><td><strong>Day trading</strong></td><td>当天开平</td><td>捕捉日内波动，不隔夜持仓</td></tr><tr><td><strong>Swing trading</strong></td><td>数天到数周</td><td>捕捉中短期趋势</td></tr><tr><td><strong>Algorithmic trading</strong></td><td>自动执行</td><td>按预设指标（价格变动、波动率）自动下单，消除情绪干扰</td></tr><tr><td><strong>HFT（高频交易）</strong></td><td>微秒级</td><td>算法 + 硬件竞速，利用微小价差套利，由专业量化公司主导</td></tr></tbody></table>
+<ul>
+<li><strong>Long position（做多）</strong>：买入后等升值卖出——“低买高卖”</li>
+<li><strong>Short selling（做空）</strong>：借入资产卖出，等跌价后买回归还——赚价差</li>
+<li><strong>Backtesting（回测）</strong>：用历史数据检验算法策略，类似软件开发中的 unit testing</li>
+</ul>
+<h4 id="三大投资风格">三大投资风格</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>属性</th><th>Growth（成长）</th><th>Value（价值）</th><th>Income（收入）</th></tr></thead><tbody><tr><td>主要目标</td><td>资本增值</td><td>资本增值</td><td>持续现金流</td></tr><tr><td>关注点</td><td>未来潜力、创新</td><td>被低估的”便宜货”</td><td>稳定的现金分配</td></tr><tr><td>典型公司</td><td>年轻、创新、高速扩张</td><td>成熟、稳定、暂时不受欢迎</td><td>成熟、可预测、高现金流</td></tr><tr><td>分红</td><td>低或无（利润再投资）</td><td>通常有分红</td><td>高且稳定的分红是关键</td></tr><tr><td>关键指标</td><td>高 revenue growth、高 P/E</td><td>低 P/E、低 P/B</td><td>高 dividend yield、稳定 cash flow</td></tr><tr><td>风险</td><td>高</td><td>低到中</td><td>低</td></tr><tr><td>时间跨度</td><td>长期</td><td>中长期</td><td>任意，常用于即时需求</td></tr></tbody></table>
+<ul>
+<li><strong>GARP（Growth at a Reasonable Price）</strong>：结合价值投资和成长投资的混合策略</li>
+<li><strong>Q</strong> “Your personal or professional knowledge of a domain can give you a strong investment advantage.” — Peter Lynch / 你对某个领域的个人或专业知识，可以成为强大的投资优势。</li>
+</ul>
+<h4 id="核心-卫星组合结构core-and-satellite">核心-卫星组合结构（Core and Satellite）</h4>
+<ul>
+<li><strong>Core（核心）</strong>：长期投资仓位，通过复利耐心增长</li>
+<li><strong>Satellites（卫星）</strong>：围绕核心的小型战术仓位——一部分做短期交易捕捉波动，一部分配置收入型资产产生稳定现金流</li>
+<li>这个结构让纪律性长期计划和短期机会捕捉并存</li>
+</ul>
+<h3 id="14-风险与回报risks-and-rewards">1.4 风险与回报（Risks and Rewards）</h3>
+<ul>
+<li>Hedging（对冲）= 风险管理策略：在相关资产上建立反向头寸来对冲损失。本质是买保险——牺牲部分潜在收益来限制极端亏损</li>
+<li>过去的回报不保证未来。市场不可预测，没有任何工具或策略能保证成功</li>
+<li>Start-ups 回报潜力最高但也最危险。Crypto 同理——可能暴涨也可能断崖</li>
+<li>社交媒体对股价的影响有时比财报还大。公众人物的不可预测行为可以让隔夜涨幅蒸发</li>
+<li><strong>Q</strong> “Be fearful when others are greedy, and greedy when others are fearful.” — Warren Buffett / 别人贪婪时恐惧，别人恐惧时贪婪。</li>
+</ul>
+<h3 id="15-程序员的不公平优势a-programmers-unfair-advantage">1.5 程序员的不公平优势（A Programmer’s Unfair Advantage）</h3>
+<h4 id="系统与数据思维">系统与数据思维</h4>
+<ul>
+<li>Fundamental analysis 类似 debug：检查核心组件（income、balance sheet）来判断公司内在价值</li>
+<li>数据分析和脚本能力可直接用于 backtesting 和自动化研究</li>
+<li>编程本质是构建规则系统——这正是制定投资纪律、避免 panic selling 和 chasing hype 所需的能力</li>
+</ul>
+<h4 id="心智模型优势">心智模型优势</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>特质</th><th>投资映射</th></tr></thead><tbody><tr><td><strong>Patience &#x26; discipline</strong></td><td>和修复顽固 bug 一样，投资是最高形式的延迟满足</td></tr><tr><td><strong>Abstract thinking</strong></td><td>习惯处理抽象概念（API、数据结构），理解无形资产（股票、债券、衍生品）更容易</td></tr><tr><td><strong>Visionary thinking</strong></td><td>身处技术前沿（AI、VR、biotech），对哪些公司会定义未来有领域内视角</td></tr></tbody></table>
+<h4 id="定义你的参数">定义你的参数</h4>
+<ul>
+<li>投资策略应和人生选择对齐：高收入 → 早退休路线；数字游民 → 低开支低税收路线</li>
+<li>关键是理解自己的环境和目标，像定义项目 spec 一样定义投资哲学：风险承受力、时间投入、伦理边界</li>
+<li>本书不提供具体的投资建议，而是教你用已有的分析能力去评估证券、辅助决策</li>
+</ul>
+<h2 id="第-2-章--投资基础investment-essentials">第 2 章 — 投资基础（Investment Essentials）</h2>
+<h3 id="21-会计基础accounting-in-a-nutshell">2.1 会计基础（Accounting in a Nutshell）</h3>
+<ul>
+<li>财务报表 = 公司的源代码。看起来晦涩，但学会读懂它们就能精确看到业务表现。不理解会计基础就投资，等于零编程能力却要做软件。</li>
+<li>会计标准来自 1929 年股市崩盘的教训。崩盘前没有联邦法律要求公司披露财务信息，GAAP 就是那次危机的产物。</li>
+<li>全球两套主要标准：<strong>GAAP</strong>（美国）和 <strong>IFRS</strong>（国际）。细节有差异，但对投资者的核心影响相同。</li>
+<li>三张必看报表，所有上市公司每季度披露：
+<ol>
+<li><strong>Income Statement（损益表）</strong>——收入多少、花了多少</li>
+<li><strong>Balance Sheet（资产负债表）</strong>——拥有什么、欠了什么</li>
+<li><strong>Cash Flow Statement（现金流量表）</strong>——实际产生了多少现金</li>
+</ol>
+</li>
+</ul>
+<h4 id="损益表income-statement">损益表（Income Statement）</h4>
+<p>核心三要素：<strong>Revenue</strong>（总收入）、<strong>Expenses</strong>（费用）、<strong>Net income</strong>（净利润 = 收入 − 费用）</p>
+<ul>
+<li><strong>货币时间价值</strong>：今天的 $1 > 一年后的 $1。可以投资生利息，通胀也在持续侵蚀购买力。因此净利润长期不增长，实际价值每年都在缩水。投资者通常期待公司的收入和净利润随时间增长。</li>
+<li>读财报是建立假设的过程，要同时构建**看多（Bullish）<strong>和</strong>看空（Bearish）**两种假设，而不是只看对自己有利的数据。
+<ul>
+<li>示例：R&#x26;D 费用暴增 + 引入外部资本 → 看多：备战新项目；看空：现有业务出问题</li>
+<li>示例：缩减研发 + 收入不变 → 看多：AI 提效产生盈余；看空：放弃成长只吃老本</li>
+</ul>
+</li>
+<li>不同商业模式的财报差异巨大，要跨行业比较往往误导人。Apple vs. Walmart 的 R&#x26;D 对比毫无意义，Apple vs. Google 才有参考价值。</li>
+</ul>
+<h4 id="资产负债表balance-sheet">资产负债表（Balance Sheet）</h4>
+<p>核心公式：<strong>Assets = Liabilities + Shareholders’ Equity</strong></p>
+<ul>
+<li>资产 > 负债 = 健康；负债 > 资产 = 警报</li>
+<li><strong>Liquidity（流动性）</strong>：资产变现为现金的难易程度。工厂和机器 = 低流动性；库存商品 = 相对较好</li>
+<li><strong>CapEx（资本支出）vs OpEx（运营支出）</strong>：软件公司资本密集度低，被视为低风险投资；但 CapEx 低可能伴随更高的 OpEx</li>
+<li><strong>Accounts payable / receivable</strong>：账面上的应付/应收款并不等于真正在手的现金 → 引出现金流的必要性</li>
+</ul>
+<h4 id="自由现金流free-cash-flow">自由现金流（Free Cash Flow）</h4>
+<p>核心公式：<strong>FCF = Operating Cash Flow − Capital Expenditures</strong></p>
+<ul>
+<li>FCF 是三张报表里最能说明公司真实健康状况的。账面有钱不代表能付账单，只有 FCF 才能确认公司的偿付能力。</li>
+<li><strong>I</strong> Eugene 的古董车案例是个绝好的类比：资产价值数百万，但现金枯竭就无法支付工人工资，流动性危机是切实存在的风险。</li>
+</ul>
+<h3 id="22-行业分类industry-classification">2.2 行业分类（Industry Classification）</h3>
+<ul>
+<li>不同行业的公司，盈利方式、费用结构、受监管程度都不同。不理解行业差异就套用同一套指标，结论很可能是错的。</li>
+<li>标准：<strong>GICS</strong>（全球行业分类标准，S&#x26;P 制定）——4 个层级：Sector → Industry Group → Industry → Sub-industry</li>
+</ul>
+<h4 id="gics-11-大板块及其主要影响因素">GICS 11 大板块及其主要影响因素</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>板块</th><th>主要影响因素</th></tr></thead><tbody><tr><td><strong>Utilities（公用事业）</strong></td><td>利率、能源价格、监管、债券收益率</td></tr><tr><td><strong>Consumer Staples（必需消费）</strong></td><td>利率、通胀、消费者信心、原材料成本</td></tr><tr><td><strong>Consumer Discretionary（可选消费）</strong></td><td>消费支出、失业率、可支配收入</td></tr><tr><td><strong>Communication Services（通信服务）</strong></td><td>政府监管、技术变革、竞争强度</td></tr><tr><td><strong>Real Estate（房地产）</strong></td><td>利率、经济周期、人口变化、政策</td></tr><tr><td><strong>Information Technology（信息技术）</strong></td><td>创新、网络安全威胁、监管变化</td></tr><tr><td><strong>Energy（能源）</strong></td><td>油价、地缘政治稳定性、可再生能源趋势</td></tr><tr><td><strong>Health Care（医疗保健）</strong></td><td>疫情、监管、药品定价、人口变化</td></tr><tr><td><strong>Financials（金融）</strong></td><td>利率、经济周期、监管变化</td></tr><tr><td><strong>Industrials（工业）</strong></td><td>制造业产出、贸易政策、大宗商品价格</td></tr><tr><td><strong>Materials（原材料）</strong></td><td>大宗商品价格、供应链稳定性、环境法规</td></tr></tbody></table>
+<ul>
+<li>GICS 分类有时与直觉不符：Amazon 和 Tesla 属于 Consumer Discretionary，Google 属于 Communication Services，而非 IT。</li>
+</ul>
+<blockquote>
+<p><strong>只投资自己理解业务的公司（Buffett）</strong>：超市和科技公司的财报逻辑根本不同。苹果推出一款爆款产品，会直接体现在年度财报里；而 Walmart 最畅销的单品，在财报上几乎看不到踪迹。能读懂财报数字、并把它连接到公司的商业模式，才是做出明智决策的基础。</p>
+</blockquote>
+<ul>
+<li><strong>Q</strong> “Invest only in businesses that you understand.” — Warren Buffett</li>
+</ul>
+<h4 id="经济周期与行业表现">经济周期与行业表现</h4>
+<ul>
+<li>经济周期四阶段：扩张 → 顶峰 → 收缩 → 谷底。<strong>周期性行业</strong>（汽车、科技消费品）在衰退期受冲击最大；<strong>防御性行业</strong>（超市、食品）相对稳定——经济再差，也要吃饭。</li>
+<li>2008 年金融危机数据验证：Ford 从高点跌至最低仅剩 1/10；Walmart 跌幅远小于此。XLP（必需消费 ETF）跌幅明显小于 XLK（科技）和 XLY（可选消费）。</li>
+<li><strong>I</strong> 如果知道某板块受利率、经济周期、原材料成本影响，就可以把这些作为 ML 模型的 feature 来预测股价——这是程序员可以直接落地的思路。</li>
+</ul>
+<h3 id="23-市值capitalization">2.3 市值（Capitalization）</h3>
+<p>市值 = 流通股总数 × 当前股价，反映市场愿意为公司支付的价格。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>分类</th><th>市值区间</th></tr></thead><tbody><tr><td><strong>Mega-cap</strong></td><td>$2000 亿以上</td></tr><tr><td><strong>Large-cap</strong></td><td>$100 亿 ~ $2000 亿</td></tr><tr><td><strong>Mid-cap</strong></td><td>$20 亿 ~ $100 亿</td></tr><tr><td><strong>Small-cap</strong></td><td>$2.5 亿 ~ $20 亿</td></tr><tr><td><strong>Micro-cap</strong></td><td>$2.5 亿以下</td></tr></tbody></table>
+<ul>
+<li>Mega-cap 破产风险低，但增长空间也小。Micro-cap 风险最高，但也最可能出现 <strong>Tenbagger</strong>（Peter Lynch 造词：翻 10 倍的投资）。</li>
+<li>历史上市值最大的公司并不总能存活。“太大不会倒”是危险的幻觉——即使是 Jeff Bezos 也承认亚马逊有朝一日可能失败。股市是适者生存，基本面研究不可或缺。</li>
+<li><strong>Intrinsic value（内在价值）</strong>：用 DCF 等方法估算的资产真实价值。市值与内在价值之间的差距越大，潜在投资机会越大——这是价值投资的核心前提。但任何内在价值估算都带有不确定性。</li>
+</ul>
+<h3 id="24-指标与比率metrics-and-ratios">2.4 指标与比率（Metrics and Ratios）</h3>
+<ul>
+<li><strong>Metric（指标）</strong>：关于公司表现的单一陈述，如 dividend yield</li>
+<li><strong>Ratio（比率）</strong>：两个独立指标之间关系的陈述，如 P/E = 股价 / EPS</li>
+<li>单一指标无法全面评估公司健康状况，正如软件质量无法靠一个指标衡量。关键在于<strong>综合评估</strong>，并和同行业同类公司横向对比。</li>
+</ul>
+<h4 id="流动性liquidity">流动性（Liquidity）</h4>
+<p>衡量公司是否有能力偿还短期账单。</p>
+<ul>
+<li>
+<p><strong>Current ratio（流动比率）</strong> = 流动资产 / 流动负债</p>
+</li>
+<li>
+<p><strong>Quick ratio（速动比率）</strong> = （现金 + 有价证券 + 应收账款）/ 流动负债，更严格，不含库存</p>
+</li>
+<li>
+<p>不同行业的流动性比率差异巨大，跨行业比较无意义。超市需要维持大量库存，流动比率天然较低（Walmart = 0.78）；科技公司库存少，流动比率高（NVIDIA = 3.39）。</p>
+</li>
+<li>
+<p>同行业内横向对比才有价值：Walmart vs Costco vs Target vs Dollar Tree——这才是分析师做决策的依据。</p>
+</li>
+</ul>
+<h4 id="债务debt">债务（Debt）</h4>
+<ul>
+<li><strong>Debt-to-Equity（D/E 比）</strong> = 总负债 / 股东权益。越高代表财务杠杆越大、风险越高。</li>
+<li>高 D/E 比不一定是坏事。Apple 的 D/E 达 147，但这是刻意用超低利率债券融资的策略——利率低于通胀时，借债等于免费用钱，是主动管理资本的体现，而非财务困境。</li>
+<li><strong>Interest coverage ratio（利息覆盖率）</strong> = EBIT / 利息费用。<strong>低于 1.0 是通用红线</strong>——意味着当前利润不足以支付利息，财务困境无关行业。</li>
+</ul>
+<h4 id="盈利earnings">盈利（Earnings）</h4>
+<ul>
+<li><strong>EPS（每股收益）</strong> = （净利润 − 优先股股息）/ 流通股数</li>
+<li><strong>FCF per share</strong> = FCF / 流通股数。FCF 高说明公司能扩张、还债或回馈股东</li>
+<li>每个季度的 earnings call，公司回顾过去并预测下季度。高于或低于预期都会显著影响股价——所谓”Beat/Miss”。</li>
+</ul>
+<h4 id="估值valuation">估值（Valuation）</h4>
+<ul>
+<li>
+<p><strong>P/E ratio（市盈率）</strong> = 股价 / EPS。衡量为 $1 盈利付了多少价格</p>
+<ul>
+<li>单独看 P/E 不够：需要与<strong>行业中位数</strong>横向比，也需要与公司<strong>自身历史均值</strong>纵向比</li>
+<li>P/E 缺陷：不含成长预期</li>
+</ul>
+</li>
+<li>
+<p><strong>PEG ratio</strong> = P/E / EPS 增长率。修正了成长因素，PEG &#x3C; 1 通常被认为低估</p>
+</li>
+<li>
+<p><strong>P/S ratio（市销率）</strong> = 股价 / 每股销售额。销售额比净利润更难操纵，适合评估尚未盈利的早期成长公司</p>
+</li>
+<li>
+<p><strong>P/B ratio（市净率）</strong> = 股价 / 每股账面价值。反映为 $1 净资产付了多少价，适合重资产行业</p>
+</li>
+<li>
+<p>同一组数据可以讲出不同的故事。以 NVIDIA 为例：看 TTM P/E 是行业中位数的 2 倍，结论是高估；但看 PEG 比率，NVIDIA 的成长预期反而让估值显得合理。<strong>数据不说谎，但叙事可以选择。</strong></p>
+</li>
+<li>
+<p><strong>I</strong> 这和程序员做性能 benchmark 类似——选什么指标、选什么基准，决定了结论往哪个方向走。投资里的”好故事”和”坏故事”往往都能从同一张表里读出来。</p>
+</li>
+</ul>
+<h4 id="盈利能力profitability">盈利能力（Profitability）</h4>
+<ul>
+<li><strong>ROA（资产回报率）</strong> = 净利润 / 总资产。每 $1 资产每年产生多少利润</li>
+<li><strong>ROE（股本回报率）</strong> = 净利润 / 股东权益。每 $1 股东权益产生多少利润</li>
+<li><strong>Profit margin（利润率）</strong> = 净利润 / 收入。超市销量大但单位利润薄，科技公司相反</li>
+</ul>
+<h4 id="分红dividends">分红（Dividends）</h4>
+<ul>
+<li>成熟公司（如可口可乐）没有足够的再投资机会，把利润分配给股东是合理选择，能吸引退休基金等收益导向型投资者。</li>
+<li><strong>Dividend yield（股息率）</strong> = 每股年分红 / 股价</li>
+<li><strong>Payout ratio（派息率）</strong> = 年分红 / 每股收益。越低说明公司保留了更多利润用于成长</li>
+<li>分红的”零和游戏”问题：股票除息日当天，股价会下调等额金额。分红本身不创造价值，但对需要定期现金流的投资者（如退休者）仍有意义。非居民还要承担最高 30% 的股息预扣税，需提前考虑税务成本。</li>
+<li><strong>Stock buyback（股票回购）</strong>：公司回购自家股票 → 流通股减少 → 每股价值提升。与分红相比更灵活，不构成周期性承诺。</li>
+<li><strong>Dividend aristocrats（股息贵族）</strong>：连续多年增长派息的公司（Coca-Cola 62 年、Altria 55 年）。长期稳定增长是信号，削减分红则是警告信号。</li>
+</ul>
+<blockquote>
+<p><strong>公司拿盈余去投资其他业务会怎样？</strong> 可口可乐曾涉足电信娱乐子公司，英国 Tesco 和 Sainsbury’s 也都试过做虚拟移动运营商。强势品牌 + 充足资本确实能打开新市场，但历史表明这类多元化扩张成功率参差不齐。支持者认为规模和既有体系是优势；反对者认为偏离核心业务容易损害品牌、拖累效率。公司”守住本业还是成为集团”这道题，值得在具体案例中独立评估，没有通用答案。</p>
+</blockquote>
+<h4 id="股权结构ownership">股权结构（Ownership）</h4>
+<ul>
+<li><strong>Outstanding shares（流通股）</strong>：所有股东持有的总股数</li>
+<li><strong>Float（自由流通股）</strong>：排除内部人和大型机构持股后的可交易股数</li>
+<li>公司可通过<strong>增发新股</strong>（稀释现有股东）或<strong>回购股票</strong>（提升每股价值）来主动调节</li>
+<li><strong>Insider transactions（内部人交易）</strong>：管理层买卖自家公司股票是重要的情绪信号——大量抛售值得关注，但也可能只是兑现收益</li>
+<li><strong>SBC（股票薪酬）</strong>：科技公司和初创公司常用，能降低现金薪资支出，但长期稀释股东权益。公司越小，稀释效应越显著。</li>
+</ul>
+<h4 id="esg-与可持续性sustainability">ESG 与可持续性（Sustainability）</h4>
+<ul>
+<li><strong>ESG（环境、社会、治理）评分</strong>：评分越低越好（0-100 分制）</li>
+<li>投资一家公司也是在支持它的行为。对于伦理驱动的投资者，ESG 是筛选条件而非加分项。</li>
+<li>跨公司比较 ESG 需在同行业内进行，行业不同基准不同。</li>
+</ul>
+<h3 id="25-外部评估external-assessments">2.5 外部评估（External Assessments）</h3>
+<ul>
+<li>分析师评级（买/持有/卖）和目标价是第三方参考，不是预测，更不是保证。2007 年垃圾债券被评级机构评为 AAA，后来呢？</li>
+<li>三类评级来源：<strong>SA Analyst</strong>（众包）、<strong>Wall Street</strong>（专业机构）、<strong>Quant</strong>（算法）——三者可能相互矛盾。</li>
+<li><strong>目标价（Target price）</strong>：基于 DCF 等基本面分析估算的 12 个月目标价，方法不透明，经常大幅偏离实际。</li>
+<li>专家意见是概率判断，不是二元的对错。好的投资者不追求每次预测正确，而是追求胜率高于 50% + 分散化来管理不可避免的错误。</li>
+<li>预测失灵是常态，不是例外。2024 年初 The Economist 等主流媒体预测股市将下跌，实际走势完全相反。即使掌握全世界的数据，也没有分析师能预测未来。</li>
+</ul>
+<hr>
+<h2 id="第-3-章--数据收集collecting-data">第 3 章 — 数据收集（Collecting Data）</h2>
+<blockquote>
+<p>选对数据源是投资分析的基础工程问题：yfinance 够用但有脆性，商业库稳定但有成本，关键是知道什么时候该升级。</p>
+</blockquote>
+<h3 id="31-金融数据分类financial-data">3.1 金融数据分类（Financial Data）</h3>
+<p>金融数据天然比其他领域更可靠——上市公司财报需要审计、符合会计准则，但会计处理本身可以被人为”调节”。</p>
+<p>三类数据：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>类型</th><th>特征</th><th>示例</th></tr></thead><tbody><tr><td><strong>基本面数据</strong>（Fundamental）</td><td>更新频率低（季报/年报）；可审计</td><td>利润表、资产负债表、现金流量表</td></tr><tr><td><strong>技术数据</strong>（Technical）</td><td>实时变动；对延迟敏感</td><td>股价、成交量、短利率</td></tr><tr><td><strong>非财务数据</strong>（Nonfinancial）</td><td>非结构化；需挖掘</td><td>社媒情绪、管理层语音情绪分析</td></tr></tbody></table>
+<ul>
+<li><strong>I</strong> “非财务数据”这个分类在 AI 时代会越来越重要——大模型很擅长处理非结构化信号，情绪分析、新闻摘要这类任务已经有成熟工具链了。</li>
+</ul>
+<h3 id="32-金融分析平台financial-analysis-platforms">3.2 金融分析平台（Financial Analysis Platforms）</h3>
+<p>Stock screener 是投资起点：按市值、行业、地区等条件筛选候选股，再深入研究。Finviz 是常用选择。</p>
+<p>四类平台：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>类别</th><th>代表</th><th>特点</th></tr></thead><tbody><tr><td>搜索引擎金融页</td><td>Yahoo Finance、Google Finance</td><td>免费；yfinance 等开源库通过抓取提供数据</td></tr><tr><td>面向散户的分析平台</td><td>Seeking Alpha、Morningstar、Koyfin</td><td>订阅制（$10–$350/年）；少数提供 API</td></tr><tr><td>面向初创的数据提供商</td><td>EODHD、Alpha Vantage、OpenBB</td><td>API 优先；freemium 模式；$240–$1200/年</td></tr><tr><td>面向大型机构的商业产品</td><td>Bloomberg Terminal、Refinitiv</td><td>价格超出个人预算</td></tr></tbody></table>
+<h3 id="33-数据科学笔记本data-science-notebooks">3.3 数据科学笔记本（Data Science Notebooks）</h3>
+<ul>
+<li>个人投资决策不需要前端界面——数字打印在 console 已经足够。notebook 是最适合投资研究的交互环境：能写假设、执行代码、原地验证。</li>
+<li><strong>I</strong> 这和”done is better than perfect”一脉相承：先拿到数据看懂再说，做 UI 是浪费时间，除非要给别人用。</li>
+</ul>
+<h3 id="34-yfinance">3.4 yfinance</h3>
+<blockquote>
+<p>yfinance 是入门首选：免费、覆盖面广（美股 + 国际交易所）、基本面和技术分析都支持。但它依赖 Yahoo 非官方接口，生产环境不可依赖。</p>
+</blockquote>
+<h4 id="基本面分析fundamental-analysis">基本面分析（Fundamental Analysis）</h4>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="python"><code><span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">microsoft </span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">=</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> yf</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B2CCD6">Ticker</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">(</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">'</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">MSFT</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">'</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">microsoft</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">.</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">income_stmt       </span><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># 利润表（DataFrame，列为报告日期）</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">microsoft</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">.</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">balance_sheet     </span><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># 资产负债表</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">microsoft</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">.</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">cash_flow         </span><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># 现金流量表</span></span>
+<span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># 季报版本加前缀 quarterly_</span></span></code></pre>
+<ul>
+<li><code>yf.Ticker(ticker).info</code> → 字典，转 Pandas Series 后可访问 132+ 属性（P/E、currentPrice 等）</li>
+<li>需要手动计算的指标（ROA、ROE、利润率、D/E 等）直接从 income_stmt 和 balance_sheet 取值运算</li>
+</ul>
+<p><strong>追踪指标随时间的变化</strong>比单点值更有意义：Apple 的 D/E 在 2021–2024 年间在 1.78–2.61 波动，不构成警告信号。</p>
+<h4 id="技术分析technical-analysis">技术分析（Technical Analysis）</h4>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="python"><code><span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">historical_data </span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">=</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> yf</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B2CCD6">Ticker</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">(</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">MSFT</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B2CCD6">history</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">(</span><span style="--shiki-light:#212121;--shiki-dark:#D7DBE0">start</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">=</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">2024-05-08</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#212121;--shiki-dark:#D9F5DD">,</span><span style="--shiki-light:#212121;--shiki-dark:#D7DBE0"> end</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">=</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">2025-05-08</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># 返回 OHLCV DataFrame</span></span></code></pre>
+<ul>
+<li>跨股票比较价格时必须归一化到同一起点（设为 100%），否则绝对价格毫无意义</li>
+<li><strong>简单收益率（Simple Returns）</strong> vs <strong>对数收益率（Logarithmic Returns）</strong>：对数收益率衡量连续复利收益率，更适合统计分析</li>
+</ul>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="python"><code><span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># 对数收益率</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">log_rets </span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">=</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> hist_prices</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">[</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">Close</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">].</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B2CCD6">apply</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">(</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">lambda</span><span style="--shiki-light:#FF9800;--shiki-dark:#7FDBCA"> x</span><span style="--shiki-light:#212121;--shiki-dark:#82AAFF">: np.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B2CCD6">log</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">(</span><span style="--shiki-light:#212121;--shiki-dark:#82AAFF">x </span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">/</span><span style="--shiki-light:#212121;--shiki-dark:#82AAFF"> x.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B2CCD6">shift</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">())).</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B2CCD6">dropna</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">()</span></span></code></pre>
+<ul>
+<li>
+<p>用 <code>mean</code>、<code>std</code>、<code>var</code> 可以快速感知股票波动性：NuScale（SMR）的标准差是可口可乐的近 6 倍，高风险高波动一目了然</p>
+</li>
+<li>
+<p><strong>I</strong> NuScale 2023 年暴跌、2024 年大涨的案例是一个经典提醒：仅凭单年数据做决策是危险的，时间窗口选择决定结论。和代码里选 benchmark 区间是一样的问题。</p>
+</li>
+</ul>
+<h4 id="yfinance-的局限性">yfinance 的局限性</h4>
+<ul>
+<li>yfinance 本质上是用 Beautiful Soup 抓 Yahoo 内部 API，Yahoo 随时可能改接口或实施反爬</li>
+<li>版本兼容性问题曾导致 sustainability 数据失效（后来修复了）</li>
+<li><strong>生产环境使用风险高</strong>，商业产品应换用有官方保障的数据源</li>
+</ul>
+<h3 id="35-商业库commercial-libraries">3.5 商业库（Commercial Libraries）</h3>
+<p>数据流向：交易所（实时流）→ 数据提供商 → 开发者。基本面数据来源是 SEC / SEDAR 等监管机构的公开申报文件。</p>
+<h4 id="finviz">Finviz</h4>
+<ul>
+<li>只支持美股交易所（ADR 除外）</li>
+<li>需要 Elite 订阅（$24.96/月）才能用 API</li>
+<li>适合只投美股且重度依赖 stock screener 的用户</li>
+</ul>
+<h4 id="eodhd">EODHD</h4>
+<ul>
+<li>主营业务就是数据，覆盖 77 个交易所</li>
+<li>Freemium：历史数据 1 年内免费，每天 20 次 API 调用</li>
+<li>接口结构与 yfinance 相近，迁移成本低</li>
+</ul>
+<h4 id="alpha-vantage">Alpha Vantage</h4>
+<ul>
+<li>Freemium；免费版不提供 adjusted close price（需付费）</li>
+<li>差异化功能：<strong>新闻情绪分析</strong>（免费版可用）</li>
+</ul>
+<h4 id="openbb">OpenBB</h4>
+<ul>
+<li>覆盖范围最广：股票 + 债券 + 加密货币 + 外汇</li>
+<li>可无缝切换底层数据提供商（<code>provider="yfinance"</code> 等），不用改业务代码</li>
+<li><strong>I</strong> 这个设计思路很工程化——把数据源抽象为可替换的 adapter，解耦分析逻辑和数据供应。对于要长期维护投资工具的程序员来说，这个架构价值比单纯的数据覆盖更值钱。</li>
+</ul>
+<h3 id="36-库的选择标准">3.6 库的选择标准</h3>
+<ul>
+<li>检查 PyPI 发布历史和 GitHub 最近 commit：<strong>一年内有更新</strong>是基本门槛</li>
+<li>多贡献者 + 高 star/fork 数 → 社区活跃 → 被维护的可能性高</li>
+<li>排除仅支持单一操作系统、单一国家交易所、非英文文档的库</li>
+<li>尽量选跨平台、覆盖多交易所的库</li>
+</ul> </article> <div id="btt-btn-container" class="fixed end-4 bottom-8 z-50 md:sticky md:end-auto md:float-end md:me-1 translate-y-14 opacity-0 transition duration-500"> <button data-button="back-to-top" class="group relative bg-background px-2 py-1 size-14 rounded-full shadow-xl md:h-8 md:w-fit md:rounded-md md:shadow-none md:focus-visible:rounded-none md:bg-background/35 md:bg-clip-padding md:backdrop-blur-lg"> <span id="progress-indicator" class="absolute inset-0 -z-10 block size-14 scale-110 rounded-full bg-transparent md:hidden md:h-8 md:rounded-md"></span> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90 md:hidden"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span class="sr-only text-sm group-hover:text-accent md:not-sr-only"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 5l0 14" /><path d="M16 9l-4 -4" /><path d="M8 9l4 -4" /></svg>
+Back To Top
+</span> </button> </div> <script data-astro-rerun>
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    const rootElement = document.documentElement;
+    const btnContainer = document.querySelector("#btt-btn-container");
+    const backToTopBtn = document.querySelector("[data-button='back-to-top']");
+    const progressIndicator = document.querySelector("#progress-indicator");
+
+    if (!rootElement || !btnContainer || !backToTopBtn || !progressIndicator)
+      return;
+
+    // Attach click event handler for back-to-top button
+    backToTopBtn.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+
+    // Handle button visibility according to scroll position
+    let lastVisible = null;
+    function handleScroll() {
+      const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight;
+      const scrollTop = rootElement.scrollTop;
+      const scrollPercent = Math.floor((scrollTop / scrollTotal) * 100);
+
+      progressIndicator.style.setProperty(
+        "background-image",
+        `conic-gradient(var(--accent), var(--accent) ${scrollPercent}%, transparent ${scrollPercent}%)`
+      );
+
+      const isVisible = scrollTop / scrollTotal > 0.3;
+
+      if (isVisible !== lastVisible) {
+        btnContainer.classList.toggle("opacity-100", isVisible);
+        btnContainer.classList.toggle("translate-y-0", isVisible);
+        btnContainer.classList.toggle("opacity-0", !isVisible);
+        btnContainer.classList.toggle("translate-y-14", !isVisible);
+        lastVisible = isVisible;
+      }
+    }
+
+    let ticking = false;
+    document.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }
+  backToTop();
+</script> </main> <footer class="app-layout mt-auto"> <div class="py-6 sm:py-4 border-t border-border flex flex-col items-center justify-between sm:flex-row-reverse"> <div class="flex flex-wrap items-center gap-1"> <a href="https://github.com/qiyuey" title="Synapse on GitHub" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only">Synapse on GitHub</span>  </a><a href="https://x.com/qiyueyc" title="Synapse on X" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Synapse on X</span>  </a><a href="mailto:yuchuanabcd@gmail.com" title="发邮件给 Synapse" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">发邮件给 Synapse</span>  </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2026</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  <!-- Load full theme logic --> <script type="module">const d="theme",r="light",m="dark";function i(){const e=localStorage.getItem(d);return e||(window.matchMedia("(prefers-color-scheme: dark)").matches?m:r)}let t=window.theme?.themeValue??i();function c(){localStorage.setItem(d,t),o()}function o(){document.firstElementChild?.setAttribute("data-theme",t),document.querySelector("#theme-btn")?.setAttribute("aria-label",t);const e=document.body;if(e){const n=window.getComputedStyle(e).backgroundColor;document.querySelector("meta[name='theme-color']")?.setAttribute("content",n)}}window.theme?(window.theme.setPreference=c,window.theme.reflectPreference=o):window.theme={themeValue:t,setPreference:c,reflectPreference:o,getTheme:()=>t,setTheme:e=>{t=e}};o();function s(){o(),document.querySelector("#theme-btn")?.addEventListener("click",()=>{t=t===r?m:r,window.theme?.setTheme(t),c()})}s();document.addEventListener("astro:after-swap",s);document.addEventListener("astro:before-swap",e=>{const a=e,n=document.querySelector("meta[name='theme-color']")?.getAttribute("content");n&&a.newDocument.querySelector("meta[name='theme-color']")?.setAttribute("content",n)});window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",({matches:e})=>{t=e?m:r,window.theme?.setTheme(t),c()});</script> </body> </html> <script data-astro-rerun>
+  function createProgressBar() {
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+    progressContainer.appendChild(progressBar);
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const myBar = document.getElementById("myBar");
+      if (myBar) myBar.style.width = scrolled + "%";
+    });
+  }
+  updateScrollProgress();
+
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ms-2 no-underline opacity-75 md:opacity-0 md:group-hover:opacity-100 md:focus:opacity-100";
+      link.href = "#" + heading.id;
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>
