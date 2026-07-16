@@ -1,0 +1,528 @@
+<!DOCTYPE html><html dir="ltr" lang="zh-CN" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://qiyuey.top/notes/macbook-pro-personal-desktop-agent-server/"><meta name="generator" content="Astro v6.4.8"><!-- System font stack - no remote loading needed --><!-- General Meta Tags --><title>把工作用的 MacBook Pro 变成个人桌面与 Agent 服务器 | Synapse</title><meta name="title" content="把工作用的 MacBook Pro 变成个人桌面与 Agent 服务器 | Synapse"><meta name="description" content="借助 Codex Remote 与 Lid，让工作用的 MacBook Pro 在离开桌面后继续充当随时可达的本地 Agent Host。"><meta name="author" content="qiyuey"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:site_name" content="Synapse"><meta property="og:locale" content="zh_CN"><meta property="og:title" content="把工作用的 MacBook Pro 变成个人桌面与 Agent 服务器 | Synapse"><meta property="og:description" content="借助 Codex Remote 与 Lid，让工作用的 MacBook Pro 在离开桌面后继续充当随时可达的本地 Agent Host。"><meta property="og:url" content="https://qiyuey.top/notes/macbook-pro-personal-desktop-agent-server/"><meta property="og:image" content="https://qiyuey.top/og/notes/macbook-pro-personal-desktop-agent-server.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="把工作用的 MacBook Pro 变成个人桌面与 Agent 服务器 | Synapse"><!-- Article Published/Modified time --><meta property="article:published_time" content="2026-07-16T06:21:23.000Z"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://qiyuey.top/notes/macbook-pro-personal-desktop-agent-server/"><meta property="twitter:title" content="把工作用的 MacBook Pro 变成个人桌面与 Agent 服务器 | Synapse"><meta property="twitter:description" content="借助 Codex Remote 与 Lid，让工作用的 MacBook Pro 在离开桌面后继续充当随时可达的本地 Agent Host。"><meta property="twitter:image" content="https://qiyuey.top/og/notes/macbook-pro-personal-desktop-agent-server.png"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"把工作用的 MacBook Pro 变成个人桌面与 Agent 服务器 | Synapse","image":"https://qiyuey.top/og/notes/macbook-pro-personal-desktop-agent-server.png","datePublished":"2026-07-16T06:21:23.000Z","author":[{"@type":"Person","name":"qiyuey","url":"https://github.com/qiyuey"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="Synapse" href="https://qiyuey.top/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CAqDO0tx.js"></script><!-- Minimal inline script to prevent FOUC - sets theme immediately --><script>
+      (function () {
+        const initialColorScheme = ""; // "light" | "dark"
+        const currentTheme = localStorage.getItem("theme");
+
+        function getPreferTheme() {
+          if (currentTheme) return currentTheme;
+          if (initialColorScheme) return initialColorScheme;
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+
+        const themeValue = getPreferTheme();
+
+        // Set theme immediately to prevent flash
+        document.firstElementChild?.setAttribute("data-theme", themeValue);
+
+        // Export minimal API for external script
+        window.theme = {
+          themeValue: themeValue,
+          getTheme: () => window.theme.themeValue,
+          setTheme: val => {
+            window.theme.themeValue = val;
+          },
+        };
+      })();
+    </script><link rel="stylesheet" href="/_astro/Footer.Cu3bbKk4.css"><style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+.app-prose .mermaid{margin-block:1.5rem;overflow-x:auto;border-radius:.75rem;border:1px solid color-mix(in oklab,var(--color-border) 70%,transparent);background:color-mix(in oklab,var(--color-muted) 45%,transparent);padding:1rem;text-align:center}.app-prose .mermaid svg{margin-inline:auto;max-width:100%;height:auto}
+</style><style>[data-astro-transition-scope="astro-pu2sknsl-1"] { view-transition-name: \628A\5DE5\4F5C\7528\7684-mac-book-pro-\53D8\6210\4E2A\4EBA\684C\9762\4E0E-agent-\670D\52A1\5668; }@layer astro { ::view-transition-old(\628A\5DE5\4F5C\7528\7684-mac-book-pro-\53D8\6210\4E2A\4EBA\684C\9762\4E0E-agent-\670D\52A1\5668) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(\628A\5DE5\4F5C\7528\7684-mac-book-pro-\53D8\6210\4E2A\4EBA\684C\9762\4E0E-agent-\670D\52A1\5668) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(\628A\5DE5\4F5C\7528\7684-mac-book-pro-\53D8\6210\4E2A\4EBA\684C\9762\4E0E-agent-\670D\52A1\5668) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(\628A\5DE5\4F5C\7528\7684-mac-book-pro-\53D8\6210\4E2A\4EBA\684C\9762\4E0E-agent-\670D\52A1\5668) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-pu2sknsl-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-pu2sknsl-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-pu2sknsl-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-pu2sknsl-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-pu2sknsl-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-pu2sknsl-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-pu2sknsl-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-pu2sknsl-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: agentic-ai; }@layer astro { ::view-transition-old(agentic-ai) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(agentic-ai) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(agentic-ai) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(agentic-ai) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: codex; }@layer astro { ::view-transition-old(codex) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(codex) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(codex) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(codex) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-4"] { view-transition-name: macos; }@layer astro { ::view-transition-old(macos) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(macos) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(macos) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(macos) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-5"] { view-transition-name: server; }@layer astro { ::view-transition-old(server) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(server) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(server) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(server) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body>  <a id="skip-to-content" href="#main-content" class="absolute start-16 -top-full z-50 bg-background px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <header class="app-layout flex flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="py-4 sm:py-6 border-b border-border relative w-full bg-background flex items-baseline justify-between sm:items-center"> <a href="/" class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"> Synapse </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ms-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="mt-4 grid w-44 grid-cols-2 place-content-center gap-2 [&amp;>li>a]:block [&amp;>li>a]:px-4 [&amp;>li>a]:py-3 [&amp;>li>a]:text-center [&amp;>li>a]:font-medium [&amp;>li>a]:hover:text-accent sm:[&amp;>li>a]:px-2 sm:[&amp;>li>a]:py-1 hidden sm:mt-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/captures">
+Captures
+</a> </li> <li class="col-span-2"> <a href="/notes" class="active-nav">
+Notes
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-2"> <a href="/archives" title="Archives" aria-label="archives" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex justify-center p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:inline-block"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg> <span class="sm:sr-only">Archives</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" title="Search" aria-label="search" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex p-3 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="app-layout flex items-center justify-start"><a id="back-button" href="/" class="group inline-flex items-center gap-1 hover:text-accent focus-outline -ms-2 mt-8 mb-2 hover:text-foreground/75"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span> </a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <nav id="toc" aria-label="目录" class="fixed top-24 right-[max(1rem,calc((100vw-var(--max-app-width,768px))/2-14rem))] z-20 hidden w-52 xl:block"><p class="mb-2 text-xs font-semibold uppercase tracking-wider text-foreground/40">
+目录
+</p><ul class="space-y-1 border-s border-border ps-3"><li><a href="#替代的不是-agent而是部署一套-agent-的必要性" data-toc-slug="替代的不是-agent而是部署一套-agent-的必要性" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent">替代的不是 Agent，而是部署一套 Agent 的必要性</a></li><li><a href="#24-小时运行真正需要的是随时可达" data-toc-slug="24-小时运行真正需要的是随时可达" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent">24 小时运行，真正需要的是随时可达</a></li><li><a href="#为什么真实工作环境往往比独立虚拟机更有价值" data-toc-slug="为什么真实工作环境往往比独立虚拟机更有价值" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent">为什么真实工作环境往往比独立虚拟机更有价值</a></li><li><a href="#codex-remote-解决远程lid-解决合盖" data-toc-slug="codex-remote-解决远程lid-解决合盖" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent">Codex Remote 解决远程，Lid 解决合盖</a></li><li><a href="#用-codex-remote-建立控制面" data-toc-slug="用-codex-remote-建立控制面" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent ps-3">用 Codex Remote 建立控制面</a></li><li><a href="#用-lid-补上合盖运行的缺口" data-toc-slug="用-lid-补上合盖运行的缺口" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent ps-3">用 Lid 补上合盖运行的缺口</a></li><li><a href="#先划定边界再让电脑常驻" data-toc-slug="先划定边界再让电脑常驻" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent">先划定边界，再让电脑常驻</a></li><li><a href="#合上电脑只是切换工作模式" data-toc-slug="合上电脑只是切换工作模式" class="toc-link block truncate text-sm leading-6 text-foreground/50 transition-colors hover:text-accent">合上电脑，只是切换工作模式</a></li></ul></nav><script type="module">function c(){const o=document.querySelectorAll(".toc-link");if(o.length===0)return;const a=Array.from(o).map(t=>t.dataset.tocSlug).map(t=>document.getElementById(t)).filter(Boolean);let n="";const r=new IntersectionObserver(t=>{for(const e of t)e.isIntersecting&&(n=e.target.id);o.forEach(e=>{const s=e.dataset.tocSlug===n;e.classList.toggle("text-accent",s),e.classList.toggle("font-medium",s),e.classList.toggle("text-foreground/50",!s)})},{rootMargin:"-10% 0px -80% 0px",threshold:0});return a.forEach(t=>r.observe(t)),()=>r.disconnect()}c();document.addEventListener("astro:after-swap",c);</script> <main id="main-content" class="app-layout pb-12" data-pagefind-body> <h1 class="inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-pu2sknsl-1"> 把工作用的 MacBook Pro 变成个人桌面与 Agent 服务器 </h1> <div class="my-2 flex items-center gap-2"> <div class="flex items-center gap-x-2 opacity-80"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-5.5"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg>  <time class="text-sm sm:text-base" datetime="2026-07-16T06:21:23.000Z">16 Jul, 2026</time> </div>  <span aria-hidden="true" class="text-muted-foreground/60">·</span> <span class="text-sm text-muted-foreground">3058 字 · 8 分钟</span>  <span aria-hidden="true" class="max-sm:hidden hidden">|</span>  </div> <article id="article" class="app-prose mt-8 w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"> <blockquote>
+<p>不必再额外养一套 OpenClaw 或 Hermes。工作用的 MacBook Pro 本来就拥有最完整的文件、项目、凭证和软件环境；让它保持在线，再通过 Codex Remote 从手机发起和管理任务，它就能同时成为个人桌面与常驻 Agent 服务器。</p>
+</blockquote>
+<p>白天坐在电脑前，MacBook Pro 是写代码、整理资料和处理日常工作的桌面。离开工位以后，突然想到一个任务：让 Agent 检查刚才的改动、跑一轮测试、整理一份本地材料，或者继续推进尚未结束的工作。这时最常见的思路，是部署 OpenClaw、Hermes，或者再准备一台云服务器、虚拟机乃至 Mac mini。</p>
+<p>但这里有一个反直觉的问题：<strong>最完整的工作环境已经在 MacBook Pro 上，却又要在另一台机器里复制出一套不完整的环境。</strong></p>
+<p>代码和文档需要同步，依赖需要重装，凭证需要重新分发，浏览器登录状态和桌面应用则很难原样搬走。多出一台服务器，看上去获得了持续在线的能力，实际上也制造了第二套需要维护的系统。</p>
+<p>另一条路径更直接：不再复制工作环境，而是让现有的工作环境随时可达。MacBook Pro 仍然是每天使用的个人桌面；人离开后，它切换成执行任务的 Agent Host。手机只是控制面，真正的文件读取、命令执行和工具调用仍然发生在这台电脑上。</p>
+<h2 id="替代的不是-agent而是部署一套-agent-的必要性">替代的不是 Agent，而是部署一套 Agent 的必要性</h2>
+<p>OpenClaw 和 Hermes 最吸引人的体验，不一定是某个独有的技术能力，而是让人感觉 Agent 始终在线：在手机上发一句话，它就能回到某台机器读取文件、调用工具、持续执行任务，再把结果送回来。</p>
+<p>当 Codex Remote 已经能够从手机连接本机，这种体验不再要求额外部署一层通用 Agent。按照 <a href="https://learn.chatgpt.com/docs/remote-connections">Codex Remote connections</a> 的能力边界，手机可以在已连接的 Host 上新建或继续任务、发送后续指令、回答问题、批准操作，并查看输出、diff、测试结果、终端信息和截图。MacBook Pro 则继续提供本地项目、Shell、Skills、MCP、浏览器及其他执行环境。</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">flowchart LR</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    Phone["手机：发起、批准与验收"] --> Remote["Codex Remote"]</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    Remote --> Codex["MacBook Pro 上的 Codex"]</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    Codex --> Files["本地项目与文档"]</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    Codex --> Tools["工具、Skills 与 MCP"]</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    Codex --> Credentials["已有凭证与登录状态"]</span></span></code></pre>
+<p>这里的“替代”需要说得准确：它不是复刻 OpenClaw 或 Hermes 的全部产品功能，也不追求把所有事情塞进 Telegram 之类的聊天窗口。它替代的是最核心的使用场景——<strong>随时从远端向一台常驻机器下达任务</strong>。</p>
+<p>这种取舍反而适合深度工作。聊天窗口降低了发起轻量任务的门槛，却不擅长承载多文件 diff、分支探索、结构化文档和复杂任务的过程观察。此前关于 OpenClaw 的<a href="../../captures/2026-03/why-openclaw-will-cool-down.md">分析</a>已经指出：聊天入口带来了普及度，也限制了信息密度和可观察性。以 Codex 作为执行底座，手机仍然保留低摩擦入口，复杂工作则回到项目、文件系统和 Git 这些更适合长期管理的载体。</p>
+<h2 id="24-小时运行真正需要的是随时可达">24 小时运行，真正需要的是随时可达</h2>
+<p>“让 MacBook Pro 运行 24 小时”很容易让人联想到 CPU 持续满载、风扇不停转动。实际需要的不是机器每分每秒都在计算，而是<strong>工作环境不因为人离开桌面而消失</strong>。</p>
+<p>传统的软件使用方式是同步的：人打开电脑，操作软件，得到结果，然后合盖离开。Agent 把工作逐渐变成了异步过程。一个任务可能需要长时间构建和测试，可能需要等待外部条件，可能在执行中途提出问题，也可能按照计划定时运行。任务持续的时间开始超过人坐在电脑前的时间。</p>
+<p>这时，电脑是否随时可达会直接决定 Agent 能力的上限：</p>
+<ul>
+<li>通勤途中想到任务，可以先交给 Agent，回到桌面时直接验收；</li>
+<li>长时间构建、测试、下载和同步不必因为合盖而中断；</li>
+<li>定时检查、知识库维护和其他自动化可以在无人值守时运行；</li>
+<li>离开电脑后仍能查看进度、回答问题或批准下一步操作；</li>
+<li>白天没有完成的任务，可以在手机上继续推进，而不是等下一次打开电脑。</li>
+</ul>
+<p>因此，24 小时在线并不是追求服务器式的算力利用率，而是把工作方式从“人和电脑必须同时在线”改成“任务可以异步流动”。MacBook Pro 空闲时可以处于低负载状态，只有收到任务或触发自动化时才真正工作。</p>
+<h2 id="为什么真实工作环境往往比独立虚拟机更有价值">为什么真实工作环境往往比独立虚拟机更有价值</h2>
+<p>单独准备虚拟机或云服务器，最大的优点是隔离和稳定。它可以长期在线，不占用日常电脑，也更容易为不可信任务划定边界。但对于个人 Agent，真正稀缺的往往不是另一颗 CPU，而是完整、真实且已经配置好的工作上下文。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>维度</th><th>MacBook Pro 直接作为 Host</th><th>独立 VM 或云服务器</th></tr></thead><tbody><tr><td>文件</td><td>直接访问真实项目与本地文档</td><td>需要同步、挂载或重新下载</td></tr><tr><td>开发环境</td><td>沿用已经验证的工具链和依赖</td><td>需要重新安装和持续维护</td></tr><tr><td>凭证</td><td>使用本机已有的授权配置</td><td>需要重新分发并管理 secrets</td></tr><tr><td>应用环境</td><td>可连接浏览器和本地桌面应用</td><td>通常以无头环境为主</td></tr><tr><td>硬件成本</td><td>复用已经购买的 Apple Silicon</td><td>需要额外设备或持续租用</td></tr><tr><td>上下文一致性</td><td>人与 Agent 操作同一套环境</td><td>容易出现版本与环境漂移</td></tr><tr><td>隔离性</td><td>风险集中在日常工作电脑</td><td>边界更清晰，适合不可信任务</td></tr><tr><td>可用性</td><td>受本地供电、网络和系统状态影响</td><td>通常更容易获得稳定在线能力</td></tr></tbody></table>
+<p>在虚拟机里重建环境，复制的不只是代码。项目之外还有没有提交的改动、本地数据库、构建缓存、命令行工具、SSH 配置、浏览器会话、桌面应用，以及只存在于这台机器上的文档。每少复制一项，远端 Agent 的能力就少一块；每多同步一项，又增加一份维护和泄露风险。</p>
+<p>直接使用 MacBook Pro 的优势，在于人和 Agent 共享同一个事实源。人白天修改的文件，Agent 晚上可以直接继续；Agent 生成的 diff，第二天打开电脑就能审查。不需要先问“服务器上是不是最新版本”，也不需要在两套环境之间来回搬运中间产物。</p>
+<p>所以，两种方案并不是简单的高下之分：<strong>虚拟机提供更干净的隔离，真实工作电脑提供更完整的上下文。</strong> 对可信、与日常工作强相关的任务，后者通常更有价值；对不可信代码、高风险自动化或需要强隔离的任务，虚拟机和云端环境仍然是更稳妥的选择。</p>
+<h2 id="codex-remote-解决远程lid-解决合盖">Codex Remote 解决远程，Lid 解决合盖</h2>
+<p>让 MacBook Pro 承担两种角色，需要补齐两个彼此独立的环节：Codex Remote 负责让任务从远端抵达本机，Lid 负责让本机在合盖以后继续运行。</p>
+<h3 id="用-codex-remote-建立控制面">用 Codex Remote 建立控制面</h3>
+<p>Codex Remote 的关键不是把本地环境搬到手机，而是让手机成为本地环境的控制面。提示词、审批和后续指令从手机发出，代码、文件、工具与命令仍然来自 MacBook Pro。原有的 sandbox、安全设置和审批机制也继续作用于远程会话。</p>
+<p>基本配置并不复杂：</p>
+<ol>
+<li>在 MacBook Pro 的 Codex 桌面端选择 <strong>Set up Remote</strong>；</li>
+<li>用手机扫描二维码，在 ChatGPT 移动端完成设备配对；</li>
+<li>在 <strong>Settings > Connections</strong> 中检查已连接设备和保持唤醒设置；</li>
+<li>从手机发起一个低风险测试任务，确认能够查看输出并完成审批；</li>
+<li>再按实际需要开放项目、工具和其他权限。</li>
+</ol>
+<p>电脑进入睡眠、失去网络或退出桌面应用后，远程访问都会停止。因此，Remote 只解决了“如何连接”，还没有解决 MacBook 合盖后的电源状态。</p>
+<h3 id="用-lid-补上合盖运行的缺口">用 Lid 补上合盖运行的缺口</h3>
+<p>OpenAI 的常规说明是：MacBook 接通电源并保持开盖时可以持续提供远程访问；如果合盖，还需要连接外接显示器。<a href="https://github.com/qiyuey/lid">qiyuey/lid</a> 补上的正是这个缺口：它是一款轻量的 macOS 菜单栏应用，通过修改系统电源设置，让 MacBook 在合盖后继续运行。</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">brew</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> tap</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> qiyuey/tap</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">brew</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> install</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --cask</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> lid</span></span></code></pre>
+<p>Lid 不是 Agent，也不处理远程连接。它只做一件事：需要运行长期任务时阻止合盖休眠；不再需要时恢复正常的合盖行为。应用可以设置为登录时启动，并会根据 macOS 的真实电源状态显示结果，而不是只维护一个表面上的开关状态。</p>
+<p>修改系统电源设置需要管理员授权，而且设置会保留在 macOS 中，直到再次更改。关闭长期运行模式时，应先在 Lid 中关闭防休眠，再退出应用。当前版本要求 macOS 26 或更高版本，安装前需要确认系统版本满足要求。</p>
+<p>二者组合以后，设备的职责非常清楚：</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">flowchart TD</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    Desk["人在桌前：MacBook Pro 是个人桌面"] --> Leave["离开工位：接通电源并启用 Lid"]</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    Leave --> Closed["合盖后：MacBook Pro 保持在线"]</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    Phone["手机上的 Codex Remote"] --> Task["发起任务、查看进度、完成审批"]</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    Task --> Closed</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    Closed --> Return["回到桌面：在同一项目中验收并继续"]</span></span></code></pre>
+<h2 id="先划定边界再让电脑常驻">先划定边界，再让电脑常驻</h2>
+<p>这套方案最强的地方，是 Agent 可以进入真实工作环境；最大的风险也完全相同。使用公司配发或用于工作的 MacBook Pro 时，首先要确认组织的设备管理、数据处理和远程访问政策是否允许这种用法。技术上能够连接，不等于制度上获得了授权。</p>
+<p>即使设备属于个人，也不应该因为“只有自己使用”就给 Agent 无边界权限。更合理的做法包括：</p>
+<ul>
+<li>只开放需要处理的项目和目录；</li>
+<li>保留高风险命令及外部操作的人工审批；</li>
+<li>不让不可信代码直接接触日常凭证和私人数据；</li>
+<li>对第三方 Skills、MCP 和脚本先审查再安装；</li>
+<li>为断电、网络中断和应用退出准备恢复方式；</li>
+<li>让高风险任务继续运行在 VM、容器或专用服务器中。</li>
+</ul>
+<p>此外，MacBook Pro 终究不是数据中心服务器。长时间接通电源、持续高负载、散热空间不足和网络波动都会影响体验。把它放在合盖支架中时，需要保证周围通风；持续构建或本地模型推理等重负载任务，也要观察温度和资源占用。这里追求的是让工作环境随时可达，不是让笔记本承担所有服务器工作。</p>
+<h2 id="合上电脑只是切换工作模式">合上电脑，只是切换工作模式</h2>
+<p>OpenClaw 和 Hermes 让人看见了“随时可以向 Agent 派活”的可能性。但要获得这种体验，未必需要另养一个 Agent 系统，也未必需要购买或租用另一台服务器。</p>
+<p>对于已经把项目、文档、工具和工作习惯沉淀在 MacBook Pro 上的人，更自然的选择是让这套真实环境继续在线：Codex 承担可观察、可控制的 Agent 工作，Codex Remote 把控制入口延伸到手机，Lid 则让机器在合盖后仍然可达。</p>
+<p>这不是把个人电脑强行改造成传统服务器，而是在 Agent 时代重新理解设备的角色：人在桌前时，它服务于同步工作；人离开以后，它承接异步任务。</p>
+<blockquote>
+<p>过去，合上 MacBook 代表工作环境下线；现在，它只是从桌面模式切换到了服务器模式。</p>
+</blockquote> </article> <hr class="my-8 border-dashed">  <ul class="mt-4 mb-8 flex flex-wrap gap-4 sm:my-8"> <li> <a href="/tags/agentic-ai/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> agentic-ai </a> </li><li> <a href="/tags/codex/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> codex </a> </li><li> <a href="/tags/macos/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-4"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> macos </a> </li><li> <a href="/tags/server/" class="flex items-center gap-0.5 border-b-2 border-dashed border-foreground hover:-mt-0.5 hover:border-accent hover:text-accent focus-visible:border-none focus-visible:text-accent text-sm" data-astro-transition-scope="astro-36ssibgs-5"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-80 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg> server </a> </li> </ul> <div id="btt-btn-container" class="fixed end-4 bottom-8 z-50 md:sticky md:end-auto md:float-end md:me-1 translate-y-14 opacity-0 transition duration-500"> <button data-button="back-to-top" class="group relative bg-background px-2 py-1 size-14 rounded-full shadow-xl md:h-8 md:w-fit md:rounded-md md:shadow-none md:focus-visible:rounded-none md:bg-background/35 md:bg-clip-padding md:backdrop-blur-lg"> <span id="progress-indicator" class="absolute inset-0 -z-10 block size-14 scale-110 rounded-full bg-transparent md:hidden md:h-8 md:rounded-md"></span> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block rotate-90 md:hidden"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <span class="sr-only text-sm group-hover:text-accent md:not-sr-only"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 5l0 14" /><path d="M16 9l-4 -4" /><path d="M8 9l4 -4" /></svg>
+Back To Top
+</span> </button> </div> <script data-astro-rerun>
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    const rootElement = document.documentElement;
+    const btnContainer = document.querySelector("#btt-btn-container");
+    const backToTopBtn = document.querySelector("[data-button='back-to-top']");
+    const progressIndicator = document.querySelector("#progress-indicator");
+
+    if (!rootElement || !btnContainer || !backToTopBtn || !progressIndicator)
+      return;
+
+    // Attach click event handler for back-to-top button
+    backToTopBtn.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+
+    // Handle button visibility according to scroll position
+    let lastVisible = null;
+    function handleScroll() {
+      const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight;
+      const scrollTop = rootElement.scrollTop;
+      const scrollPercent = Math.floor((scrollTop / scrollTotal) * 100);
+
+      progressIndicator.style.setProperty(
+        "background-image",
+        `conic-gradient(var(--accent), var(--accent) ${scrollPercent}%, transparent ${scrollPercent}%)`
+      );
+
+      const isVisible = scrollTop / scrollTotal > 0.3;
+
+      if (isVisible !== lastVisible) {
+        btnContainer.classList.toggle("opacity-100", isVisible);
+        btnContainer.classList.toggle("translate-y-0", isVisible);
+        btnContainer.classList.toggle("opacity-0", !isVisible);
+        btnContainer.classList.toggle("translate-y-14", !isVisible);
+        lastVisible = isVisible;
+      }
+    }
+
+    let ticking = false;
+    document.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }
+  backToTop();
+</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var a=(s,i,o)=>{let r=async()=>{await(await s())()},t=typeof i.value=="object"?i.value:void 0,c={rootMargin:t==null?void 0:t.rootMargin},n=new IntersectionObserver(e=>{for(let l of e)if(l.isIntersecting){n.disconnect(),r();break}},c);for(let e of o.children)n.observe(e)};(self.Astro||(self.Astro={})).visible=a;window.dispatchEvent(new Event("astro:visible"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(c,s,d)=>s in c?g(c,s,{enumerable:!0,configurable:!0,writable:!0,value:d}):c[s]=d;var l=(c,s,d)=>w(c,typeof s!="symbol"?s+"":s,d);var E=new Set(["__proto__","constructor","prototype"]);{let c={0:t=>y(t),1:t=>d(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(d(t)),5:t=>new Set(d(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in c?c[p](e):void 0},d=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},i=this.querySelectorAll("template[data-astro-template]");for(let o of i){let a=o.closest(this.tagName);a!=null&&a.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let a=o.closest(this.tagName);a!=null&&a.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let a=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(a+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${a}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let n=new URL(e,document.baseURI),r=`astro-retry=${Date.now()}`,i=n.hash.replace(/^#/,"");return n.hash=i?`${i}&${r}`:r,n.toString()}async importWithRetry(e){try{return await import(e)}catch(n){return await new Promise(r=>setTimeout(r,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let n=this.getAttribute("component-url"),r=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:n}});this.dispatchEvent(r)&&console.error(`[astro-island] Error hydrating ${n}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url");try{let[i,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),r?this.importWithRetry(r):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=i;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=i[h]}return this.hydrator=u,this.hydrate}catch(i){return this.handleHydrationError(i),()=>{}}},e,this)}catch(r){this.handleHydrationError(r)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="29K8C3" prefix="r1" component-url="/_astro/WechatShare.CcIydNsQ.js" component-export="default" renderer-url="/_astro/client.qxUrnag0.js" props="{&quot;path&quot;:[0,&quot;/notes/macbook-pro-personal-desktop-agent-server&quot;],&quot;title&quot;:[0,&quot;把工作用的 MacBook Pro 变成个人桌面与 Agent 服务器&quot;],&quot;description&quot;:[0,&quot;借助 Codex Remote 与 Lid，让工作用的 MacBook Pro 在离开桌面后继续充当随时可达的本地 Agent Host。&quot;]}" ssr client="visible" opts="{&quot;name&quot;:&quot;WechatShare&quot;,&quot;value&quot;:true}" await-children><div class="flex flex-none items-center justify-center md:justify-start" data-pagefind-ignore="true"><button type="button" title="分享到微信" aria-label="分享到微信" class="group inline-flex items-center gap-1 p-2 hover:rotate-6 hover:text-accent sm:p-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 sm:scale-110" aria-hidden="true"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M16.5 10c3.038 0 5.5 2.015 5.5 4.5c0 1.397 -.778 2.645 -2 3.47l0 2.03l-1.964 -1.178a6.649 6.649 0 0 1 -1.536 .178c-3.038 0 -5.5 -2.015 -5.5 -4.5s2.462 -4.5 5.5 -4.5z"></path><path d="M11.197 15.698c-.69 .196 -1.43 .302 -2.197 .302a8.008 8.008 0 0 1 -2.612 -.432l-2.388 1.432v-2.801c-1.237 -1.082 -2 -2.564 -2 -4.199c0 -3.314 3.134 -6 7 -6c3.782 0 6.863 2.57 7 5.785l0 .215"></path><path d="M10 8h.01"></path><path d="M7 8h.01"></path><path d="M15 14h.01"></path><path d="M18 14h.01"></path></svg><span class="sr-only">分享到微信</span></button></div><!--astro:end--></astro-island> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><astro-island uid="ZQIRKt" component-url="/_astro/Comments.BifBayoH.js" component-export="default" renderer-url="/_astro/client.qxUrnag0.js" props="{}" ssr client="only" opts="{&quot;name&quot;:&quot;Comments&quot;,&quot;value&quot;:&quot;react&quot;}"></astro-island> <hr class="my-6 border-dashed"> <!-- Related Posts --> <div data-pagefind-ignore class="mb-6"> <h2 class="mb-3 text-lg font-semibold">相关内容</h2> <ul class="space-y-2"> <li> <a href="/captures/implementation-is-cheap-taste-expensive" class="group flex items-start gap-2 hover:opacity-75"> <span class="mt-1 shrink-0 text-xs text-muted-foreground opacity-60"> capture </span> <span class="text-sm text-accent/85 underline-offset-4 group-hover:underline"> 实现便宜后，品味变贵 </span> </a> </li><li> <a href="/captures/openai-codex-team-builds-with-codex" class="group flex items-start gap-2 hover:opacity-75"> <span class="mt-1 shrink-0 text-xs text-muted-foreground opacity-60"> capture </span> <span class="text-sm text-accent/85 underline-offset-4 group-hover:underline"> Codex 团队如何用 Codex 构建产品 </span> </a> </li><li> <a href="/captures/why-openclaw-will-cool-down" class="group flex items-start gap-2 hover:opacity-75"> <span class="mt-1 shrink-0 text-xs text-muted-foreground opacity-60"> capture </span> <span class="text-sm text-accent/85 underline-offset-4 group-hover:underline"> 为什么 OpenClaw 一定会凉，但仍然值得一试 </span> </a> </li> </ul> </div> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2">  <a href="/captures/implementation-is-cheap-taste-expensive" class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"> <div> <span>下一篇</span> <div class="text-sm text-accent/85">实现便宜后，品味变贵</div> </div> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none rtl:rotate-180"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <footer class="app-layout mt-auto"> <div class="py-6 sm:py-4 border-t border-border flex flex-col items-center justify-between sm:flex-row-reverse"> <div class="flex flex-wrap items-center gap-1"> <a href="https://github.com/qiyuey" title="Synapse on GitHub" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></svg> <span class="sr-only">Synapse on GitHub</span>  </a><a href="https://x.com/qiyueyc" title="Synapse on X" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Synapse on X</span>  </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2026</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>  <!-- Load full theme logic --> <script type="module">const d="theme",r="light",m="dark";function i(){const e=localStorage.getItem(d);return e||(window.matchMedia("(prefers-color-scheme: dark)").matches?m:r)}let t=window.theme?.themeValue??i();function c(){localStorage.setItem(d,t),o()}function o(){document.firstElementChild?.setAttribute("data-theme",t),document.querySelector("#theme-btn")?.setAttribute("aria-label",t);const e=document.body;if(e){const n=window.getComputedStyle(e).backgroundColor;document.querySelector("meta[name='theme-color']")?.setAttribute("content",n)}}window.theme?(window.theme.setPreference=c,window.theme.reflectPreference=o):window.theme={themeValue:t,setPreference:c,reflectPreference:o,getTheme:()=>t,setTheme:e=>{t=e}};o();function s(){o(),document.querySelector("#theme-btn")?.addEventListener("click",()=>{t=t===r?m:r,window.theme?.setTheme(t),c()})}s();document.addEventListener("astro:after-swap",s);document.addEventListener("astro:before-swap",e=>{const a=e,n=document.querySelector("meta[name='theme-color']")?.getAttribute("content");n&&a.newDocument.querySelector("meta[name='theme-color']")?.setAttribute("content",n)});window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",({matches:e})=>{t=e?m:r,window.theme?.setTheme(t),c()});</script> </body> </html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ms-2 no-underline opacity-75 md:opacity-0 md:group-hover:opacity-100 md:focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre")).filter(
+      codeBlock => codeBlock.dataset.language !== "mermaid"
+    );
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      // Check if --file-name-offset custom property exists
+      const computedStyle = getComputedStyle(codeBlock);
+      const hasFileNameOffset =
+        computedStyle.getPropertyValue("--file-name-offset").trim() !== "";
+
+      // Determine the top positioning class
+      const topClass = hasFileNameOffset
+        ? "top-(--file-name-offset)"
+        : "-top-3";
+
+      const copyButton = document.createElement("button");
+      copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script> <script type="module" src="/_astro/PostDetails.astro_astro_type_script_index_0_lang.C35khv6i.js"></script>
